@@ -1,4 +1,5 @@
 package Character;
 
-public class Vampire {
+public class Vampire extends Character {
+
 }

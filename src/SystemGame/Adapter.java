@@ -1,6 +1,8 @@
 package SystemGame;
 
+import java.util.Map;
+
 public interface Adapter {
-    public void save(SystemData systemData);
-    public SystemData load();
+    void save(Object data, String path);
+    Object load(String path);
 }
