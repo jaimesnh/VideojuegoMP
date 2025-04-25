@@ -1,39 +1,28 @@
 package User;
 
-public class User {
-    private String nombre;
+public abstract class User {
+    private String name;
     private String nick;
     private String password;
 
-    public User(String nombre, String nick, String password) {
-        this.nombre = nombre;
+    public User(String name, String nick, String password) {
+        this.name = name;
         this.nick = nick;
         this.password = password;
     }
 
-    public void registrarse() {
+    public abstract int getScore();
+
+    public String getName() {
+        return this.name;
     }
 
-    public void darseDeBaja() {
-    }
-
-    public void iniciarSesion() {
-    }
-
-    public void cerrarSesion() {
-    }
-
-    // Getters y Setters opcionales
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getNick() {
-        return nick;
+        return this.nick;
     }
 
     public void setNick(String nick) {
@@ -41,7 +30,7 @@ public class User {
     }
 
     public String getPassword() {
-        return password;
+        return this.password;
     }
 
     public void setPassword(String password) {

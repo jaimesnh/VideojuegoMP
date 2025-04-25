@@ -1,14 +1,7 @@
 package Character;
 
-public class VampireFactory implements PersonajeFactory {
-    public Character crearPersonaje() {
-        return new Character(
-                "Drácula",
-                HabilidadEspecial.VUELO,
-                Arrays.asList(Armas.GARRAS),
-                Armadura.NINGUNA,
-                100,
-                80
-        );
+public class VampireFactory extends CharacterFactory {
+    public Character createCharacter() {
+        return new Vampire();
     }
 }

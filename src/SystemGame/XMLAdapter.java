@@ -1,33 +1,42 @@
 package SystemGame;
 
-import java.beans.XMLDecoder;
 import java.beans.XMLEncoder;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
+import java.beans.XMLDecoder;
+import java.io.*;
+import java.nio.file.Paths;
 
 public class XMLAdapter implements Adapter {
 
-    private static final String FILE_NAME = "system_data.xml";
+    @Override
+    public void save(Object data, String path) {
+        String fullPath = getFullPath(path);
+        File file = new File(fullPath);
 
-    public void save(SystemData systemData) {
-        try (XMLEncoder encoder = new XMLEncoder(new FileOutputStream(FILE_NAME))) {
-            encoder.writeObject(systemData);
-            System.out.println("Datos guardados exitosamente en XML.");
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("Error al guardar los datos.");
+        // Crear directorio si es necesario
+        File parent = file.getParentFile();
+        if (parent != null && !parent.exists()) parent.mkdirs();
+
+        try (XMLEncoder encoder = new XMLEncoder(new BufferedOutputStream(new FileOutputStream(file)))) {
+            encoder.writeObject(data);
+            System.out.println("Archivo XML guardado en: " + fullPath);
+        } catch (IOException e) {
+            System.err.println("Error al guardar archivo XML: " + e.getMessage());
         }
     }
 
-    public SystemData load() {
-        try (XMLDecoder decoder = new XMLDecoder(new FileInputStream(FILE_NAME))) {
-            SystemData data = (SystemData) decoder.readObject();
-            System.out.println("Datos cargados correctamente desde XML.");
-            return data;
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("Error al cargar los datos. Se devuelve uno nuevo.");
-            return new SystemData();
+    @Override
+    public Object load(String path) {
+        String fullPath = getFullPath(path);
+
+        try (XMLDecoder decoder = new XMLDecoder(new BufferedInputStream(new FileInputStream(fullPath)))) {
+            return decoder.readObject();
+        } catch (IOException e) {
+            System.err.println("Error al leer archivo XML: " + e.getMessage());
+            return null;
         }
+    }
+
+    private String getFullPath(String relativePath) {
+        return Paths.get(System.getProperty("user.dir"), relativePath).toString();
     }
 }
