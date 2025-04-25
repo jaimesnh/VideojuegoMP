@@ -1,8 +1,7 @@
 package SystemGame;
 
 
-import utils.Const;
-
+import utils.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -153,8 +152,8 @@ public class SystemGame {
     // Print the menu for not logged users
     private boolean notLoggedMenu() {
         String[] options = { "Iniciar Sesión", "Registrarse", "Salir" }; // 1, 2, 3
-        MenuBuilder.setConfigLastAsZero(true);
-        int answer = MenuBuilder.menu("Bienvenido al juego", options);
+        MenuUtils.setConfigLastAsZero(true);
+        int answer = MenuUtils.menu("Bienvenido al juego", options);
 
         if (answer == 1) {
             this.login();
@@ -175,8 +174,8 @@ public class SystemGame {
         String[] options = { "Desafio", "Modificar equipamiento activo", "Cambiar personaje", "Historial de batallas", "Ranking", "Gestionar cuenta", "Cerrar sesión" };
         // 1, 2, 3, 4, 5, 6, 0
         String nickName = this.loggedUser.getNick();
-        MenuBuilder.setConfigLastAsZero(true);
-        int answer = MenuBuilder.menu(String.format("Menu [%s]", nickName), options);
+        MenuUtils.setConfigLastAsZero(true);
+        int answer = MenuUtils.menu(String.format("Menu [%s]", nickName), options);
 
         if (answer == 1) {
             this.challenge();
@@ -200,8 +199,8 @@ public class SystemGame {
         String[] options = { "Gestionar jugadores", "Gestionar equipamiento", "Gestionar desafios", "Comprobar Ranking", "Gestionar cuenta", "Cerrar Sesión" };
         // 1, 2, 3, 4, 5, 0
         String nickName = this.loggedUser.getNick();
-        MenuBuilder.setConfigLastAsZero(true);
-        int answer = MenuBuilder.menu(String.format("Menu [%s]", nickName), options);
+        MenuUtils.setConfigLastAsZero(true);
+        int answer = MenuUtils.menu(String.format("Menu [%s]", nickName), options);
 
         if (answer == 1) {
             this.managePlayers();
@@ -226,14 +225,14 @@ public class SystemGame {
             User user = this.retrUser(credentials[0], credentials[1]);
 
             if (user == null) {
-                MenuBuilder.alert("Credenciales incorrectas", "El usuario o contraseña son incorrectas");
-                boolean answer = MenuBuilder.askYesNo("¿Quieres volver a intentarlo?");
+                MenuUtils.alert("Credenciales incorrectas", "El usuario o contraseña son incorrectas");
+                boolean answer = MenuUtils.askYesNo("¿Quieres volver a intentarlo?");
                 if (!answer) {
                     return;
                 }
             } else if (user instanceof Player && ((Player) user).isBanned()) {
                 String msg = "Has sido baneado. Contacta con el administrador para más información.";
-                MenuBuilder.alert("Usuario baneado", msg);
+                MenuUtils.alert("Usuario baneado", msg);
                 return;
             } else {
                 this.setLoggedUser(user);
@@ -243,7 +242,7 @@ public class SystemGame {
 
     private String[] askUserCredentials() {
         String[] labels = { "Usuario", "Contraseña" };
-        return MenuBuilder.form("Iniciar sesión", labels);
+        return MenuUtils.form("Iniciar sesión", labels);
     }
 
     // Method to search the user from the user list of logged users
@@ -266,7 +265,7 @@ public class SystemGame {
         String[] userData = this.readUserData();
 
         while (this.isUsernameTaken(userData[0])) {
-            MenuBuilder.alert("Usuario incorrecto", "Nombre de usuario escogido");
+            MenuUtils.alert("Usuario incorrecto", "Nombre de usuario escogido");
             userData = this.readUserData();
         }
 
@@ -285,11 +284,11 @@ public class SystemGame {
 
     private String[] readUserData() {
         String[] labels = { "Usuario", "Apodo", "Contraseña", "Confirmar contraseña" };
-        String[] data = MenuBuilder.form("Registro", labels);
+        String[] data = MenuUtils.form("Registro", labels);
 
         while ((!data[2].equals(data[3])) || (!Game.isValidPassword(data[2]))) {
-            MenuBuilder.alert("Contraseña incorrecta", "La contraseña debe tener entre 8 y 12 caracteres.");
-            data = MenuBuilder.form("Registro", labels);
+            MenuUtils.alert("Contraseña incorrecta", "La contraseña debe tener entre 8 y 12 caracteres.");
+            data = MenuUtils.form("Registro", labels);
         }
 
         return data;
@@ -307,7 +306,7 @@ public class SystemGame {
     // Prints a menu to select the user type among two options
     private int readUserType() {
         String[] options = { "Player", "Admin" };
-        return MenuBuilder.menu("Select User Type", options);
+        return MenuUtils.menu("Select User Type", options);
     }
 
     // Method to create the user
@@ -375,7 +374,7 @@ public class SystemGame {
         for (int i = 0; i < players.length; i++) {
             options[i] = players[i].getNick() + " #" + players[i].getId();
         }
-        int answer = MenuBuilder.menu(title, options) - 1;
+        int answer = MenuUtils.menu(title, options) - 1;
 
         return (Player) players[answer];
     }
@@ -386,21 +385,21 @@ public class SystemGame {
 
         Player opponent = this.askPlayerFromPlayersList();
 
-        int gold = MenuBuilder.readInt("Introduce el oro a apostar");
+        int gold = MenuUtils.readInt("Introduce el oro a apostar");
         if (!currPlayer.canAfford(gold)) {
-            MenuBuilder.alert("Oro invalido", "No tienes tanto oro para apostar");
+            MenuUtils.alert("Oro invalido", "No tienes tanto oro para apostar");
             return;
         }
 
         Challenge challenge = new Challenge(currPlayer, opponent, gold);
         if (!challenge.isValid(currPlayer, opponent)) {
-            MenuBuilder.alert("Alerta de desafio", "El desadio no ha sido creado, intentelo de nuevo");
+            MenuUtils.alert("Alerta de desafio", "El desadio no ha sido creado, intentelo de nuevo");
             return;
         }
 
         this.modifyActiveEquipment();
         currPlayer.setPendingChallenge(challenge);
-        MenuBuilder.alert("Desafio creado", "El desafio ha sido creado con exito");
+        MenuUtils.alert("Desafio creado", "El desafio ha sido creado con exito");
         this.challenges.add(challenge);
     }
 
@@ -427,14 +426,14 @@ public class SystemGame {
 
         String title = "Change Character";
         String[] options = CharacterSelection.allToString(); // Generate the character options [LYCANTHROPE, VAMPIRE, HUNTER]
-        int answer = MenuBuilder.menu(title, options);
+        int answer = MenuUtils.menu(title, options);
 
         CharacterSelection selectedCharacter = CharacterSelection.values()[answer - 1];
 
         String output = "%s has been selected.";
         output = String.format(output, selectedCharacter.toString());
 
-        MenuBuilder.alert(title, output);
+        MenuUtils.alert(title, output);
 
         if (selectedCharacter != player.getCurrentCharacter()) {
             player.setCurrentCharacter(selectedCharacter);
@@ -447,7 +446,7 @@ public class SystemGame {
         Player player = (Player) this.loggedUser;
 
         if (!player.hasChallenges()) {
-            MenuBuilder.alert("El historia esta vacio", "No has participado en en ningún desafio");
+            MenuUtils.alert("El historia esta vacio", "No has participado en en ningún desafio");
             return;
         }
 
@@ -472,7 +471,7 @@ public class SystemGame {
         }
 
         // Print the battle history
-        MenuBuilder.doc("Historial de batallas", data);
+        MenuUtils.doc("Historial de batallas", data);
     }
 
     private void managePlayers() {
@@ -481,8 +480,8 @@ public class SystemGame {
 
             String[] options = new String[] { "Banear jugador", "Desbanear jugador", "Mostrar información de jugador", "Volver" };
             // 1, 2, 3
-            MenuBuilder.setConfigLastAsZero(true);
-            int action = MenuBuilder.menu("Gestionar jugador", options);
+            MenuUtils.setConfigLastAsZero(true);
+            int action = MenuUtils.menu("Gestionar jugador", options);
 
             if (action == 1) {
                 this.banPlayer(player);
@@ -499,22 +498,22 @@ public class SystemGame {
     // Methods to ban/unban players
 
     private void banPlayer(Player player) {
-        boolean confirm = MenuBuilder.askYesNo("¿Estas seguro que quieres banear a este jugador?");
+        boolean confirm = MenuUtils.askYesNo("¿Estas seguro que quieres banear a este jugador?");
         if (confirm) {
             player.ban();
-            MenuBuilder.alert("Jugador baneado", "El jugador ha sido baneado.");
+            MenuUtils.alert("Jugador baneado", "El jugador ha sido baneado.");
         } else {
-            MenuBuilder.alert("Operación cancelada", "El jugador no ha sido baneado.");
+            MenuUtils.alert("Operación cancelada", "El jugador no ha sido baneado.");
         }
     }
 
     private void unbanPlayer(Player player) {
-        boolean confirm = MenuBuilder.askYesNo("¿Estas seguro que quieres desbanear a este jugador?");
+        boolean confirm = MenuUtils.askYesNo("¿Estas seguro que quieres desbanear a este jugador?");
         if (confirm) {
             player.unban();
-            MenuBuilder.alert("Jugador desbaneado", "El jugador ha sido desbaneado.");
+            MenuUtils.alert("Jugador desbaneado", "El jugador ha sido desbaneado.");
         } else {
-            MenuBuilder.alert("Operación cancelada", "El jugador no ha sido desbaneado");
+            MenuUtils.alert("Operación cancelada", "El jugador no ha sido desbaneado");
         }
     }
 
@@ -526,8 +525,8 @@ public class SystemGame {
     private void manageEquipment() {
         while (true) {
             String[] options = new String[] { "Gestionar armaduras", "Gestionar armas", "Volver" };
-            MenuBuilder.setConfigLastAsZero(true);
-            int answer = MenuBuilder.menu("Gestionar equipo", options);
+            MenuUtils.setConfigLastAsZero(true);
+            int answer = MenuUtils.menu("Gestionar equipo", options);
 
             if (answer == 1) {
                 this.manageArmors();
@@ -543,8 +542,8 @@ public class SystemGame {
     private void manageArmors() {
         while (true) {
             String[] options = new String[]{"Añadir armadura", "Eliminar armadura", "Mostrar armadura", "Volver"};
-            MenuBuilder.setConfigLastAsZero(true);
-            int answer = MenuBuilder.menu("Gestionar armaduras", options);
+            MenuUtils.setConfigLastAsZero(true);
+            int answer = MenuUtils.menu("Gestionar armaduras", options);
 
             if (answer == 1) {
                 this.addArmor();
@@ -561,7 +560,7 @@ public class SystemGame {
     // Method to add a new armor
     private void addArmor() {
         String[] labels = { "Nombre", "Modificador de defensa", "Modificador de ataque" };
-        String[] dataInput = MenuBuilder.form("Añadir armadura", labels);
+        String[] dataInput = MenuUtils.form("Añadir armadura", labels);
 
         int defenseModifier = 0;
         int attackModifier = 0;
@@ -572,15 +571,15 @@ public class SystemGame {
 
             Armor armor = new Armor(dataInput[0], defenseModifier, attackModifier);
 
-            boolean answer = MenuBuilder.askYesNo("¿Estas seguro de añadir esta armadura?");
+            boolean answer = MenuUtils.askYesNo("¿Estas seguro de añadir esta armadura?");
 
             if (answer) {
                 Game.armorsAvailable.add(armor);
             } else {
-                MenuBuilder.alert("Operación cancelada", "Esta armadura no ha sido añadida");
+                MenuUtils.alert("Operación cancelada", "Esta armadura no ha sido añadida");
             }
         } catch (NumberFormatException e) {
-            MenuBuilder.alert("Error en la entrada", "Los modificadores de ataque y defensa deben de ser enteros");
+            MenuUtils.alert("Error en la entrada", "Los modificadores de ataque y defensa deben de ser enteros");
             this.addArmor(); // Recursive call
         }
     }
@@ -591,16 +590,16 @@ public class SystemGame {
         for (int i = 0; i < Game.armorsAvailable.size(); i++) {
             options[i] = Game.armorsAvailable.get(i).getName();
         }
-        int answer = MenuBuilder.menu("Eliminar armadura", options) - 1;
+        int answer = MenuUtils.menu("Eliminar armadura", options) - 1;
 
         // Ask for user confirmation
-        boolean confirm = MenuBuilder.askYesNo("¿Estas seguro de eliminar esta armadura?");
+        boolean confirm = MenuUtils.askYesNo("¿Estas seguro de eliminar esta armadura?");
 
         // If the user confirms, remove the armor from the armors available
         if (confirm) {
             Game.armorsAvailable.remove(answer);
         } else {
-            MenuBuilder.alert("Operación cancelada", "Esta armadura no ha sido eliminada");
+            MenuUtils.alert("Operación cancelada", "Esta armadura no ha sido eliminada");
         }
     }
 
@@ -615,15 +614,15 @@ public class SystemGame {
             data[i] = armor.getName() + " --> Defensa: " + armor.getDefense() + " | Ataque: " + armor.getAttack();
         }
 
-        MenuBuilder.doc("Armors", data);
+        MenuUtils.doc("Armors", data);
     }
 
     // Method to manage weapons
     private void manageWeapons() {
         while (true) {
             String[] options = new String[] { "Añadir arma", "Eliminar arma", "Mostrar armas", "Volver" };
-            MenuBuilder.setConfigLastAsZero(true);
-            int answer = MenuBuilder.menu("Gestionar armas", options);
+            MenuUtils.setConfigLastAsZero(true);
+            int answer = MenuUtils.menu("Gestionar armas", options);
 
             if (answer == 1) {
                 this.addWeapon();
@@ -640,7 +639,7 @@ public class SystemGame {
 
     private void addWeapon() {
         String[] labels = { "Nombre", "Modificador de defensa", "Modificador de ataque", "Manos requeridas" };
-        String[] dataInput = MenuBuilder.form("Añadir arma", labels);
+        String[] dataInput = MenuUtils.form("Añadir arma", labels);
 
         int defenseModifier = 0;
         int attackModifier = 0;
@@ -653,15 +652,15 @@ public class SystemGame {
 
             Weapon weapon = new Weapon(dataInput[0], defenseModifier, attackModifier, handsRequired);
 
-            boolean answer = MenuBuilder.askYesNo("¿Estas seguro de añadir este arma?");
+            boolean answer = MenuUtils.askYesNo("¿Estas seguro de añadir este arma?");
 
             if (answer) {
                 Game.weaponsAvailable.add(weapon);
             } else {
-                MenuBuilder.alert("Operación cancelada", "El arma no ha sido añadida");
+                MenuUtils.alert("Operación cancelada", "El arma no ha sido añadida");
             }
         } catch (NumberFormatException e) {
-            MenuBuilder.alert("Error en la entrada", "Los modificadores de ataque, defensa y las manos requeridas deben de ser enteros");
+            MenuUtils.alert("Error en la entrada", "Los modificadores de ataque, defensa y las manos requeridas deben de ser enteros");
             this.addWeapon();
         }
     }
@@ -672,14 +671,14 @@ public class SystemGame {
         for (int i = 0; i < Game.weaponsAvailable.size(); i++) {
             options[i] = Game.weaponsAvailable.get(i).getName();
         }
-        int answer = MenuBuilder.menu("Eliminar arma", options) - 1;
+        int answer = MenuUtils.menu("Eliminar arma", options) - 1;
 
-        boolean confirm = MenuBuilder.askYesNo("¿Estas seguro de eliminar este arma?");
+        boolean confirm = MenuUtils.askYesNo("¿Estas seguro de eliminar este arma?");
 
         if (confirm) {
             Game.weaponsAvailable.remove(answer);
         } else {
-            MenuBuilder.alert("Operación cancelada", "El arma no ha sido eliminada.");
+            MenuUtils.alert("Operación cancelada", "El arma no ha sido eliminada.");
         }
     }
 
@@ -692,7 +691,7 @@ public class SystemGame {
             data[i] = weapon.getName() + " --> Defensa: " + weapon.getDefense() + " | Ataque: " + weapon.getAttack() + " | Manos requeridas: " + weapon.getHandsRequired();
         }
 
-        MenuBuilder.doc("Armas", data);
+        MenuUtils.doc("Armas", data);
     }
 
     // Method tomanage challenges
@@ -705,7 +704,7 @@ public class SystemGame {
             }
         }
 
-        MenuBuilder.alert("gestión de desafios", "Todos los desafios han sido gestionados con éxito");
+        MenuUtils.alert("gestión de desafios", "Todos los desafios han sido gestionados con éxito");
     }
 
 
@@ -733,7 +732,7 @@ public class SystemGame {
             data[i] = playerData;
         }
 
-        MenuBuilder.doc("Ranking", data);
+        MenuUtils.doc("Ranking", data);
     }
 
     // Method to manage account (as player)
@@ -742,8 +741,8 @@ public class SystemGame {
 
         while (answer != 0 && this.loggedUser != null) {
             String[] options = { "Cambiar apodo", "Cambiar contraseña", "Eliminar cuenta", "Volver" };
-            MenuBuilder.setConfigLastAsZero(true);
-            answer = MenuBuilder.menu("Gestionar cuenta", options);
+            MenuUtils.setConfigLastAsZero(true);
+            answer = MenuUtils.menu("Gestionar cuenta", options);
 
             if (answer == 1) {
                 this.changeNick();
@@ -757,36 +756,36 @@ public class SystemGame {
 
     // Method to change nick for users
     private void changeNick() {
-        String data = MenuBuilder.readString("Cambiar apodo");
+        String data = MenuUtils.readString("Cambiar apodo");
 
         if (data != null) {
             this.loggedUser.setNick(data);
-            MenuBuilder.alert("Apodo actualizado", "Tu apodo ha sido actualizado correctamente.");
+            MenuUtils.alert("Apodo actualizado", "Tu apodo ha sido actualizado correctamente.");
         }
     }
 
     // Method to change password for all users
     private void changePassword() {
         String[] labels = { "Nueva contraseña", "Confiarmar contraseña" };
-        String[] data = MenuBuilder.form("Cambiar contraseña", labels);
+        String[] data = MenuUtils.form("Cambiar contraseña", labels);
 
         if (data[0].equals(data[1])) {
             this.loggedUser.setPassword(data[0]);
-            MenuBuilder.alert("Contraseña actualizada", "Tu contraseña ha sido actualizada con éxito.");
+            MenuUtils.alert("Contraseña actualizada", "Tu contraseña ha sido actualizada con éxito.");
         } else {
-            MenuBuilder.alert("Contraseña incorrecta", "La contraseña es incorrecta. Vuelva a intentarlo.");
+            MenuUtils.alert("Contraseña incorrecta", "La contraseña es incorrecta. Vuelva a intentarlo.");
             this.changePassword();
         }
     }
 
     // Method to delete the account
     private void deleteAccount() {
-        boolean answer = MenuBuilder.askYesNo("¿Estas seguro de eliminar la cuenta?");
+        boolean answer = MenuUtils.askYesNo("¿Estas seguro de eliminar la cuenta?");
 
         if (answer) {
             this.users.remove(this.loggedUser);
             this.logOut();
-            MenuBuilder.alert("cuenta eliminada", "Tu cuenta ha sido eliminada correctamente");
+            MenuUtils.alert("cuenta eliminada", "Tu cuenta ha sido eliminada correctamente");
         }
     }
 
