@@ -1,5 +1,7 @@
 package Character;
 
-public abstract class Equipment {
-
+public interface Equipment {
+    String getName();
+    int getAttack();
+    int getDefense();
 }
