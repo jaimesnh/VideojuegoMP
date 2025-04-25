@@ -1,4 +1,5 @@
 package Character;
 
-public class Lycanthrope {
+public class Lycanthrope extends Character {
+
 }

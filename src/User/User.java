@@ -1,47 +1,36 @@
 package User;
 
-public class User {
+public abstract class User {
     private String name;
-    private String username;
+    private String nick;
     private String password;
 
-    public User(String name, String username, String password) {
+    public User(String name, String nick, String password) {
         this.name = name;
-        this.username = username;
+        this.nick = nick;
         this.password = password;
     }
 
-    public void register() {
-    }
+    public abstract int getScore();
 
-    public void unsubscribe() {
-    }
-
-    public void logIn() {
-    }
-
-    public void logOut() {
-    }
-
-    // Optional Getters and Setters
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public String getUsername() {
-        return username;
+    public String getNick() {
+        return this.nick;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setNick(String nick) {
+        this.nick = nick;
     }
 
     public String getPassword() {
-        return password;
+        return this.password;
     }
 
     public void setPassword(String password) {
