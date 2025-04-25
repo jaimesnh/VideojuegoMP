@@ -1,35 +1,35 @@
 package User;
 
-public class Administrator {
-        public Administrador(String nombre, String nick, String password) {
-            super(nombre, nick, password);
+
+public class Administrator extends User {
+        public Administrator(String name, String username, String password) {
+                super(name, username, password);
         }
 
-        public void editarPersonaje() {
+        public void editCharacter() {
         }
 
-        public void añadirArma() {
+        public void addWeapon() {
         }
 
-        public void añadirArmaduras() {
+        public void addArmor() {
         }
 
-        public void gestionarFortalezas() {
+        public void manageStrengths() {
         }
 
-        public void gestionarDebilidades() {
+        public void manageWeaknesses() {
         }
 
-        public void añadirEsbirros() {
+        public void addMinions() {
         }
 
-        public void validarDesafío() {
+        public void validateChallenge() {
         }
 
-        public void bloquearUsuario() {
+        public void blockUser() {
         }
 
-        public void desbloquearUsuario() {
+        public void unblockUser() {
         }
-    }
-
+}

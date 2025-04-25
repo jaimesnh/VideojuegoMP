@@ -1,4 +1,4 @@
-package Character;
+package Abilities;
 
 public class Gift {
 }

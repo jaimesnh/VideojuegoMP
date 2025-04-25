@@ -1,62 +1,64 @@
 package User;
 
-public class Player {
-        private int numeroDeRegistro;
-        private Personaje personaje;
+import SystemGame.Challenge;
+import SystemGame.Ranking;
 
-        public player(String nombre, String nick, String password, int numeroDeRegistro) {
-            super(nombre, nick, password);
-            this.numeroDeRegistro = numeroDeRegistro;
-        }
+public class Player extends User {
+    private int registrationNumber;
+    private Character character;
 
-        public void desafiar(String nick) {
-        }
-
-        public void aceptarDesafio(Desafio d) {
-        }
-
-        public Ranking consultarRanking() {
-            return new Ranking();
-        }
-
-        public void registrarPersonaje() {
-        }
-
-        public void darDeBajaPersonaje() {
-            personaje = null;
-        }
-
-        public void elegirArmas() {
-        }
-
-        public void elegirArmaduras() {
-        }
-
-        public void rechazarDesafio() {
-        }
-
-        public void consultarOro() {
-        }
-
-        public void Operation1() {
-        }
-
-        // Getters y setters opcionales
-        public int getNumeroDeRegistro() {
-            return numeroDeRegistro;
-        }
-
-        public void setNumeroDeRegistro(int numeroDeRegistro) {
-            this.numeroDeRegistro = numeroDeRegistro;
-        }
-
-        public Personaje getPersonaje() {
-            return personaje;
-        }
-
-        public void setPersonaje(Personaje personaje) {
-            this.personaje = personaje;
-        }
+    public Player(String name, String username, String password, int registrationNumber) {
+        super(name, username, password);
+        this.registrationNumber = registrationNumber;
     }
 
+    public void challenge(String username) {
+    }
+
+    public void acceptChallenge(Challenge c) {
+    }
+
+    public Ranking viewRanking() {
+        return new Ranking();
+    }
+
+    public void registerCharacter() {
+    }
+
+    public void unregisterCharacter() {
+        character = null;
+    }
+
+    public void chooseWeapons() {
+    }
+
+    public void chooseArmor() {
+    }
+
+    public void rejectChallenge() {
+    }
+
+    public void checkGold() {
+    }
+
+    public void operation1() {
+    }
+
+    // Optional Getters and Setters
+    public int getRegistrationNumber() {
+        return registrationNumber;
+    }
+
+    public void setRegistrationNumber(int registrationNumber) {
+        this.registrationNumber = registrationNumber;
+    }
+
+    public Character getCharacter() {
+        return character;
+    }
+
+    public void setCharacter(Character character) {
+        this.character = character;
+    }
+}
 
