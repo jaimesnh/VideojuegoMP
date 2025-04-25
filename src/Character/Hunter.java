@@ -1,4 +1,5 @@
 package Character;
 
-public class Hunter {
+public class Hunter extends Character {
+
 }

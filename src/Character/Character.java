@@ -1,8 +1,9 @@
 package Character;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class Character {
+public abstract class Character {
 
 
     private String name;
