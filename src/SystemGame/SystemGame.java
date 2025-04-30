@@ -22,7 +22,7 @@ public class SystemGame {
     public static List<Weapon> weaponsAvailable = new ArrayList<>();
     public static List<Modifier> modifiersAvailable = new ArrayList<>();
     public static List<Talent> talentsAvailable = new ArrayList<>();
-    public static List<Gift> donesAvailable = new ArrayList<>();
+    public static List<Gift> giftsAvailable = new ArrayList<>();
     public static List<Discipline> disciplinesAvailable = new ArrayList<>();
     public static List<Ghoul> ghoulsAvailable = new ArrayList<>();
     public static List<Human> humansAvailable = new ArrayList<>();
@@ -80,7 +80,7 @@ public class SystemGame {
         SystemGame.weaponsAvailable = Weapon.loadFromArray(Const.WEAPONS);
         SystemGame.modifiersAvailable = Modifier.loadFromArray(Const.STRENGHTS, Const.WEAKNESSES);
         SystemGame.talentsAvailable = Talent.loadFromArray(Const.TALENTS);
-        SystemGame.donesAvailable = Gift.loadFromArray(Const.DONES);
+        SystemGame.giftsAvailable = Gift.loadFromArray(Const.DONES);
         SystemGame.disciplinesAvailable = Discipline.loadFromArray(Const.DISCIPLINES);
         SystemGame.ghoulsAvailable = Ghoul.loadFromArray(Const.GHOULS);
         SystemGame.humansAvailable = Human.loadFromArray(Const.HUMANS);
@@ -98,7 +98,7 @@ public class SystemGame {
         SystemGame.weaponsAvailable = (List<Weapon>) state.get("weaponsAvailable");
         SystemGame.modifiersAvailable = (List<Modifier>) state.get("modifiersAvailable");
         SystemGame.talentsAvailable = (List<Talent>) state.get("talentsAvailable");
-        SystemGame.donesAvailable = (List<Gift>) state.get("donesAvailable");
+        SystemGame.giftsAvailable = (List<Gift>) state.get("giftsAvailable");
         SystemGame.disciplinesAvailable = (List<Discipline>) state.get("disciplinesAvailable");
         SystemGame.ghoulsAvailable = (List<Ghoul>) state.get("ghoulsAvailable");
         SystemGame.humansAvailable = (List<Human>) state.get("humansAvailable");
@@ -123,7 +123,7 @@ public class SystemGame {
         state.put("weaponsAvailable", SystemGame.weaponsAvailable);
         state.put("modifiersAvailable", SystemGame.modifiersAvailable);
         state.put("talentsAvailable", SystemGame.talentsAvailable);
-        state.put("donesAvailable", SystemGame.donesAvailable);
+        state.put("giftsAvailable", SystemGame.giftsAvailable);
         state.put("disciplinesAvailable", SystemGame.disciplinesAvailable);
         state.put("ghoulsAvailable", SystemGame.ghoulsAvailable);
         state.put("humansAvailable", SystemGame.humansAvailable);
