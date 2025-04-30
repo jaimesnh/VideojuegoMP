@@ -1,4 +1,4 @@
-package equipment;
+package Equipment;
 
 public abstract class Equipment {
     private String name;

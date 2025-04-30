@@ -1,4 +1,4 @@
-package utils;
+package Utils;
 
 import java.util.Arrays;
 
@@ -12,11 +12,11 @@ public class MenuUtils {
 
     // Strings
     private static String HINT = "Selecciona un numero de la lista y presione ENTER";
-    private static String CHOOSE_OPTION = "Elegir una opcion";
+    private static String CHOOSE_OPTION = "Elegir una opción";
     private static String WARN = "Alerta";
-    private static String INVALID_OPTION = "Opcion no valida!";
+    private static String INVALID_OPTION = "Opción no valida!";
     private static String MUST_BE_A_NUMBER = "El valor de entrada debe de ser un numero";
-    private static String MUST_NOT_BE_EMPTY = "El valor de entrada no debe de estar vacio";
+    private static String MUST_NOT_BE_EMPTY = "El valor de entrada no debe de estar vacío";
     private static String ASK_YES_NO = "Si=[1] / No=[0]";
     private static String MUST_BE_YES_NO = "El numero de entrada debe ser 1 (Si) o 0 (No)";
     private static String MUST_BE_POSITIVE = "El valor de entrada debe de ser un entero positivo";

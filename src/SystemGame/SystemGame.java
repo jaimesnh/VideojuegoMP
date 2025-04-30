@@ -1,11 +1,14 @@
 package SystemGame;
 
+import User.*;
+import Utils.*;
+import Abilities.*;
+import Challenges.*;
+import Character.*;
+import Equipment.*;
+import Minions.*;
+import java.util.*;
 
-import utils.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 public class SystemGame {
 
@@ -19,7 +22,7 @@ public class SystemGame {
     public static List<Weapon> weaponsAvailable = new ArrayList<>();
     public static List<Modifier> modifiersAvailable = new ArrayList<>();
     public static List<Talent> talentsAvailable = new ArrayList<>();
-    public static List<Don> donesAvailable = new ArrayList<>();
+    public static List<Gift> donesAvailable = new ArrayList<>();
     public static List<Discipline> disciplinesAvailable = new ArrayList<>();
     public static List<Ghoul> ghoulsAvailable = new ArrayList<>();
     public static List<Human> humansAvailable = new ArrayList<>();
@@ -77,7 +80,7 @@ public class SystemGame {
         SystemGame.weaponsAvailable = Weapon.loadFromArray(Const.WEAPONS);
         SystemGame.modifiersAvailable = Modifier.loadFromArray(Const.STRENGHTS, Const.WEAKNESSES);
         SystemGame.talentsAvailable = Talent.loadFromArray(Const.TALENTS);
-        SystemGame.donesAvailable = Don.loadFromArray(Const.DONES);
+        SystemGame.donesAvailable = Gift.loadFromArray(Const.DONES);
         SystemGame.disciplinesAvailable = Discipline.loadFromArray(Const.DISCIPLINES);
         SystemGame.ghoulsAvailable = Ghoul.loadFromArray(Const.GHOULS);
         SystemGame.humansAvailable = Human.loadFromArray(Const.HUMANS);
@@ -95,7 +98,7 @@ public class SystemGame {
         SystemGame.weaponsAvailable = (List<Weapon>) state.get("weaponsAvailable");
         SystemGame.modifiersAvailable = (List<Modifier>) state.get("modifiersAvailable");
         SystemGame.talentsAvailable = (List<Talent>) state.get("talentsAvailable");
-        SystemGame.donesAvailable = (List<Don>) state.get("donesAvailable");
+        SystemGame.donesAvailable = (List<Gift>) state.get("donesAvailable");
         SystemGame.disciplinesAvailable = (List<Discipline>) state.get("disciplinesAvailable");
         SystemGame.ghoulsAvailable = (List<Ghoul>) state.get("ghoulsAvailable");
         SystemGame.humansAvailable = (List<Human>) state.get("humansAvailable");
@@ -141,7 +144,7 @@ public class SystemGame {
         switch (this.loggedUser) {
             case null -> exit = this.notLoggedMenu();
             case Player player -> this.loggedPlayerMenu();
-            case Admin admin -> this.loggedAdminMenu();
+            case Administrator administrator -> this.loggedAdminMenu();
             default -> {
             }
         }
@@ -171,7 +174,7 @@ public class SystemGame {
 
     // Print the menu for logged users
     private void loggedPlayerMenu() {
-        String[] options = { "Desafio", "Modificar equipamiento activo", "Cambiar personaje", "Historial de batallas", "Ranking", "Gestionar cuenta", "Cerrar sesión" };
+        String[] options = { "desafío", "Modificar equipamiento activo", "Cambiar personaje", "Historial de batallas", "Ranking", "Gestionar cuenta", "Cerrar sesión" };
         // 1, 2, 3, 4, 5, 6, 0
         String nickName = this.loggedUser.getNick();
         MenuUtils.setConfigLastAsZero(true);
@@ -196,11 +199,11 @@ public class SystemGame {
 
     // Print the menu for logged admins
     private void loggedAdminMenu() {
-        String[] options = { "Gestionar jugadores", "Gestionar equipamiento", "Gestionar desafios", "Comprobar Ranking", "Gestionar cuenta", "Cerrar Sesión" };
+        String[] options = { "Gestionar jugadores", "Gestionar equipamiento", "Gestionar desafíos", "Comprobar Ranking", "Gestionar cuenta", "Cerrar Sesión" };
         // 1, 2, 3, 4, 5, 0
         String nickName = this.loggedUser.getNick();
         MenuUtils.setConfigLastAsZero(true);
-        int answer = MenuUtils.menu(String.format("Menu [%s]", nickName), options);
+        int answer = MenuUtils.menu(String.format("Menú [%s]", nickName), options);
 
         if (answer == 1) {
             this.managePlayers();
@@ -286,7 +289,7 @@ public class SystemGame {
         String[] labels = { "Usuario", "Apodo", "Contraseña", "Confirmar contraseña" };
         String[] data = MenuUtils.form("Registro", labels);
 
-        while ((!data[2].equals(data[3])) || (!Game.isValidPassword(data[2]))) {
+        while ((!data[2].equals(data[3])) || (!SystemGame.isValidPassword(data[2]))) {
             MenuUtils.alert("Contraseña incorrecta", "La contraseña debe tener entre 8 y 12 caracteres.");
             data = MenuUtils.form("Registro", labels);
         }
@@ -305,8 +308,8 @@ public class SystemGame {
 
     // Prints a menu to select the user type among two options
     private int readUserType() {
-        String[] options = { "Player", "Admin" };
-        return MenuUtils.menu("Select User Type", options);
+        String[] options = { "Jugador", "Administrador" };
+        return MenuUtils.menu("Seleccione el tipo de usuario", options);
     }
 
     // Method to create the user
@@ -314,7 +317,7 @@ public class SystemGame {
         if (userType == 1) {
             return new Player(userData[0], userData[1], userData[2], this.generatePlayerId());
         } else {
-            return new Admin(userData[0], userData[1], userData[2]);
+            return new Administrator(userData[0], userData[1], userData[2]);
         }
     }
 
@@ -393,13 +396,13 @@ public class SystemGame {
 
         Challenge challenge = new Challenge(currPlayer, opponent, gold);
         if (!challenge.isValid(currPlayer, opponent)) {
-            MenuUtils.alert("Alerta de desafio", "El desadio no ha sido creado, intentelo de nuevo");
+            MenuUtils.alert("Alerta de desafío", "El desafío no ha sido creado, inténtelo de nuevo");
             return;
         }
 
         this.modifyActiveEquipment();
         currPlayer.setPendingChallenge(challenge);
-        MenuUtils.alert("Desafio creado", "El desafio ha sido creado con exito");
+        MenuUtils.alert("desafío creado", "El desafío ha sido creado con éxito");
         this.challenges.add(challenge);
     }
 
@@ -424,13 +427,13 @@ public class SystemGame {
     private void changeCharacter() {
         Player player = (Player) this.loggedUser;
 
-        String title = "Change Character";
-        String[] options = CharacterSelection.allToString(); // Generate the character options [LYCANTHROPE, VAMPIRE, HUNTER]
+        String title = "Cambiar personaje";
+        String[] options = CharacterSelection.allToString();
         int answer = MenuUtils.menu(title, options);
 
         CharacterSelection selectedCharacter = CharacterSelection.values()[answer - 1];
 
-        String output = "%s has been selected.";
+        String output = "%s ha sido seleccionado.";
         output = String.format(output, selectedCharacter.toString());
 
         MenuUtils.alert(title, output);
@@ -446,7 +449,7 @@ public class SystemGame {
         Player player = (Player) this.loggedUser;
 
         if (!player.hasChallenges()) {
-            MenuUtils.alert("El historia esta vacio", "No has participado en en ningún desafio");
+            MenuUtils.alert("El historia esta vacío", "No has participado en en ningún desafío");
             return;
         }
 
@@ -586,9 +589,9 @@ public class SystemGame {
 
     // Method to remove an existing armor
     private void removeArmor() {
-        String[] options = new String[Game.armorsAvailable.size()];
-        for (int i = 0; i < Game.armorsAvailable.size(); i++) {
-            options[i] = Game.armorsAvailable.get(i).getName();
+        String[] options = new String[SystemGame.armorsAvailable.size()];
+        for (int i = 0; i < SystemGame.armorsAvailable.size(); i++) {
+            options[i] = SystemGame.armorsAvailable.get(i).getName();
         }
         int answer = MenuUtils.menu("Eliminar armadura", options) - 1;
 
@@ -606,11 +609,11 @@ public class SystemGame {
     // Method to show armors
     private void showArmors() {
         // Create the armors data table
-        String[] data = new String[Game.armorsAvailable.size()];
+        String[] data = new String[SystemGame.armorsAvailable.size()];
 
         // Fill the data array with the armors
-        for (int i = 0; i < Game.armorsAvailable.size(); i++) {
-            Armor armor = Game.armorsAvailable.get(i);
+        for (int i = 0; i < SystemGame.armorsAvailable.size(); i++) {
+            Armor armor = SystemGame.armorsAvailable.get(i);
             data[i] = armor.getName() + " --> Defensa: " + armor.getDefense() + " | Ataque: " + armor.getAttack();
         }
 
@@ -655,7 +658,7 @@ public class SystemGame {
             boolean answer = MenuUtils.askYesNo("¿Estas seguro de añadir este arma?");
 
             if (answer) {
-                Game.weaponsAvailable.add(weapon);
+                SystemGame.weaponsAvailable.add(weapon);
             } else {
                 MenuUtils.alert("Operación cancelada", "El arma no ha sido añadida");
             }
@@ -667,16 +670,16 @@ public class SystemGame {
 
     // Method to remove a weapon
     private void removeWeapon() {
-        String[] options = new String[Game.weaponsAvailable.size()];
-        for (int i = 0; i < Game.weaponsAvailable.size(); i++) {
-            options[i] = Game.weaponsAvailable.get(i).getName();
+        String[] options = new String[SystemGame.weaponsAvailable.size()];
+        for (int i = 0; i < SystemGame.weaponsAvailable.size(); i++) {
+            options[i] = SystemGame.weaponsAvailable.get(i).getName();
         }
         int answer = MenuUtils.menu("Eliminar arma", options) - 1;
 
         boolean confirm = MenuUtils.askYesNo("¿Estas seguro de eliminar este arma?");
 
         if (confirm) {
-            Game.weaponsAvailable.remove(answer);
+            SystemGame.weaponsAvailable.remove(answer);
         } else {
             MenuUtils.alert("Operación cancelada", "El arma no ha sido eliminada.");
         }
@@ -684,10 +687,10 @@ public class SystemGame {
 
     // Method to show weapons
     private void showWeapons() {
-        String[] data = new String[Game.weaponsAvailable.size()];
+        String[] data = new String[SystemGame.weaponsAvailable.size()];
 
-        for (int i = 0; i < Game.weaponsAvailable.size(); i++) {
-            Weapon weapon = Game.weaponsAvailable.get(i);
+        for (int i = 0; i < SystemGame.weaponsAvailable.size(); i++) {
+            Weapon weapon = SystemGame.weaponsAvailable.get(i);
             data[i] = weapon.getName() + " --> Defensa: " + weapon.getDefense() + " | Ataque: " + weapon.getAttack() + " | Manos requeridas: " + weapon.getHandsRequired();
         }
 
@@ -696,15 +699,15 @@ public class SystemGame {
 
     // Method tomanage challenges
     private void manageChallenges() {
-        Admin admin = (Admin) this.loggedUser;
+        Administrator administrator = (Administrator) this.loggedUser;
 
         for (Challenge challenge : this.challenges) {
             if (!challenge.isApproved()) {
-                admin.manageChallenge(challenge);
+                administrator.manageChallenge(challenge);
             }
         }
 
-        MenuUtils.alert("gestión de desafios", "Todos los desafios han sido gestionados con éxito");
+        MenuUtils.alert("gestión de desafíos", "Todos los desafíos han sido gestionados con éxito");
     }
 
 
@@ -766,7 +769,7 @@ public class SystemGame {
 
     // Method to change password for all users
     private void changePassword() {
-        String[] labels = { "Nueva contraseña", "Confiarmar contraseña" };
+        String[] labels = { "Nueva contraseña", "Confirmar contraseña" };
         String[] data = MenuUtils.form("Cambiar contraseña", labels);
 
         if (data[0].equals(data[1])) {
