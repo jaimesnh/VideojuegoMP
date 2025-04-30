@@ -14,7 +14,7 @@ public class Talent extends SpecialAbility{
         return super.toString() ;
     }
 
-    public static String[] listTalents() {
+    public static String[] listAvailableTalents() {
         String[] talents = new String[SystemGame.talentsAvailable.size()];
         for (int i = 0; i < SystemGame.talentsAvailable.size(); i++) {
             Talent talent = SystemGame.talentsAvailable.get(i);

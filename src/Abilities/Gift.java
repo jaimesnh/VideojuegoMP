@@ -23,7 +23,7 @@ public class Gift extends SpecialAbility{
         return super.toString() + String.format(", minimum range: %d", minimumRange);
     }
 
-    public static String[] listGifts() {
+    public static String[] listAvailableGifts() {
         String[] Gifts = new String[SystemGame.giftsAvailable.size()];
         for (int i = 0; i < SystemGame.giftsAvailable.size(); i++) {
             Gift gift = SystemGame.giftsAvailable.get(i);

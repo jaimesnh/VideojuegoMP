@@ -24,7 +24,7 @@ public class Discipline extends SpecialAbility {
         return super.toString() + String.format(", cost: %d", cost);
     }
 
-    public static String[] listDisciplines() {
+    public static String[] listAvailableDisciplines() {
         String[] disciplines = new String[SystemGame.disciplinesAvailable.size()];
         for (int i = 0; i < SystemGame.disciplinesAvailable.size(); i++) {
             Discipline discipline = SystemGame.disciplinesAvailable.get(i);

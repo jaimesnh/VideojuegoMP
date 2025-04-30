@@ -1,5 +1,11 @@
 package User;
 
+import SystemGame.SystemGame;
+import Abilities.*;
+import Challenges.Challenge;
+import Character.*;
+import Utils.MenuUtils;
+import Equipment.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,24 +51,24 @@ public class Player extends User {
         String name = this.getName();
         info[1] = "Nombre: " + name;
         int gold = this.gold;
-        info[2] = "Gold: " + gold;
-        info[3] = "Banned: " + (this.banned ? "Yes" : "No");
-        info[4] = "Character: " + this.currentCharacter.name().toLowerCase();
+        info[2] = "Oro: " + gold;
+        info[3] = "Baneado: " + (this.banned ? "Si" : "No");
+        info[4] = "Personaje: " + this.currentCharacter.name().toLowerCase();
         String var4 = this.armor != null ? this.armor.getName() : "None";
-        info[5] = "Armor: " + var4;
+        info[5] = "Armadura: " + var4;
         var4 = this.weapons[0] != null ? this.weapons[0].getName() : "None";
-        info[6] = "Weapon 1: " + var4;
+        info[6] = "Arma 1: " + var4;
         var4 = this.weapons[1] != null ? this.weapons[0].getName() : "None";
-        info[7] = "Weapon 2: " + var4;
+        info[7] = "Arma 2: " + var4;
         var4 = this.modifiers[0] != null ? this.modifiers[0].getName() : "None";
-        info[8] = "Modifier 1" + var4;
+        info[8] = "Modificador 1" + var4;
         var4 = this.modifiers[1] != null ? this.modifiers[1].getName() : "None";
-        info[9] = "Modifier 2" + var4;
+        info[9] = "Modificador 2" + var4;
         var4 = this.specialAbility != null ? this.specialAbility.getName() : "None";
-        info[10] = "Special Ability" + var4;
-        info[11] = "Pending challenge: " + (this.pendingChallenge != null ? "Yes" : "No");
+        info[10] = "Habilidad especial" + var4;
+        info[11] = "Desafíos pendientes: " + (this.pendingChallenge != null ? "Si" : "No");
         String[] data = info;
-        MenuUtils.doc("Player: " + this.getName(), data);
+        MenuUtils.doc("Jugador: " + this.getName(), data);
     }
 
     public boolean defeatedRecently() {
@@ -99,7 +105,7 @@ public class Player extends User {
     }
 
     public void changeModifier(int modifierIndex) {
-        List<Modifier> modifiersAvailable = Game.modifiersAvailable;
+        List<Modifier> modifiersAvailable = SystemGame.modifiersAvailable;
         String[] options = new String[modifiersAvailable.size()];
 
         for(int i = 0; i < modifiersAvailable.size(); ++i) {
@@ -128,7 +134,7 @@ public class Player extends User {
             options = Discipline.listAvailableDisciplines();
             characterAbility = 0;
         } else if (this.currentCharacter == CharacterSelection.LYCANTHROPE) {
-            options = Don.listAvailableDones();
+            options = Gift.listAvailableGifts();
             characterAbility = 1;
         } else {
             options = Talent.listAvailableTalents();
@@ -138,11 +144,11 @@ public class Player extends User {
         int option = MenuUtils.menu("Elija una habilidad especial", options) - 1;
         SpecialAbility specialAbilitySelected;
         if (characterAbility == 0) {
-            specialAbilitySelected = (SpecialAbility)Game.disciplinesAvailable.get(option);
+            specialAbilitySelected = (SpecialAbility)SystemGame.disciplinesAvailable.get(option);
         } else if (characterAbility == 1) {
-            specialAbilitySelected = (SpecialAbility)Game.donesAvailable.get(option);
+            specialAbilitySelected = (SpecialAbility)SystemGame.giftsAvailable.get(option);
         } else {
-            specialAbilitySelected = (SpecialAbility)Game.talentsAvailable.get(option);
+            specialAbilitySelected = (SpecialAbility)SystemGame.talentsAvailable.get(option);
         }
 
         this.specialAbility = specialAbilitySelected;
@@ -195,7 +201,7 @@ public class Player extends User {
     }
 
     public void changeArmor() {
-        List<Armor> armorsAvailable = Game.armorsAvailable;
+        List<Armor> armorsAvailable = SystemGame.armorsAvailable;
         String[] options = new String[armorsAvailable.size()];
 
         for(int i = 0; i < armorsAvailable.size(); ++i) {
@@ -209,7 +215,7 @@ public class Player extends User {
     }
 
     public void changeWeapon(int weaponIndex) {
-        List<Weapon> weaponsAvailable = Game.weaponsAvailable;
+        List<Weapon> weaponsAvailable = SystemGame.weaponsAvailable;
         String[] options = new String[weaponsAvailable.size()];
 
         for(int i = 0; i < weaponsAvailable.size(); ++i) {
