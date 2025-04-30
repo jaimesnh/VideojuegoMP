@@ -1,5 +1,5 @@
 package Character;
 
-public abstract class CharacterFactory {
-    public abstract Character createCharacter();
+public interface CharacterFactory {
+    public abstract Character createCharacter(Player player);
 }
