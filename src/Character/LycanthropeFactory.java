@@ -1,6 +1,8 @@
 package Character;
 
-public class LycanthropeFactory extends CharacterFactory {
+import User.Player;
+
+public class LycanthropeFactory implements CharacterFactory {
     public Character createCharacter(Player player) {
         return new Lycanthrope(player);
     }

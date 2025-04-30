@@ -12,8 +12,8 @@ public class Discipline extends SpecialAbility {
         this.cost = cost;
     }
 
-    public int useDiscipline(int amountBlood) {
-        if (amountBlood >= this.cost) {
+    public int abilityAttack(int blood) {
+        if (blood >= this.cost) {
             return super.getAttack();
         } else {
             return 0;

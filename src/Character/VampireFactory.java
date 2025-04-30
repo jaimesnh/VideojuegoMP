@@ -1,6 +1,8 @@
 package Character;
 
-public class VampireFactory extends CharacterFactory {
+import User.Player;
+
+public class VampireFactory implements CharacterFactory {
     public Character createCharacter(Player player) {
         return new Vampire(player);
     }
