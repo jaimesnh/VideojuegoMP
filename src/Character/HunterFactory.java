@@ -1,7 +1,7 @@
 package Character;
 
 public class HunterFactory extends CharacterFactory {
-    public Character createCharacter() {
-        return new Hunter();
+    public Character createCharacter(Player player) {
+        return new Hunter(player);
     }
 }
