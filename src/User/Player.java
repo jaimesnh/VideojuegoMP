@@ -1,7 +1,5 @@
 package User;
 
-import SystemGame.Challenge;
-
 import java.util.ArrayList;
 import java.util.List;
 

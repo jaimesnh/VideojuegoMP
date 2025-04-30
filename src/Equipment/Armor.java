@@ -1,4 +1,4 @@
-package equipment;
+package Equipment;
 
 import java.util.ArrayList;
 
