@@ -1,6 +1,7 @@
 package Abilities;
 
 import java.util.ArrayList;
+import SystemGame.SystemGame;
 
 public class Gift extends SpecialAbility{
     private int minimumRange;
@@ -25,8 +26,8 @@ public class Gift extends SpecialAbility{
     public static String[] listGifts() {
         String[] Gifts = new String[SystemGame.giftsAvailable.size()];
         for (int i = 0; i < SystemGame.giftsAvailable.size(); i++) {
-            Discipline discipline = SystemGame.giftsAvailable.get(i);
-            Gifts[i] = discipline.toString();
+            Gift gift = SystemGame.giftsAvailable.get(i);
+            Gifts[i] = gift.toString();
         }
 
         return Gifts;

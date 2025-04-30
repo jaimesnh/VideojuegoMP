@@ -1,6 +1,8 @@
 package Abilities;
 
 import java.util.ArrayList;
+import SystemGame.SystemGame;
+
 
 public class Discipline extends SpecialAbility {
     private int cost;

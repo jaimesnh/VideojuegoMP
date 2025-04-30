@@ -1,6 +1,7 @@
 package Abilities;
 
 import java.util.ArrayList;
+import SystemGame.SystemGame;
 
 public class Talent extends SpecialAbility{
     private int minimumRange;
