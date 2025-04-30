@@ -6,6 +6,8 @@ public abstract class Modifier {
 
     private String name;
 
+    public Modifier() {}
+
     // Constructor
     public Modifier(String name) {
         this.name = name;

@@ -6,6 +6,8 @@ import Utils.MenuUtils;
 
 public class Administrator extends User {
 
+        public Administrator() {}
+
         public Administrator(String name, String nick, String password) {
                 super(name, nick, password);
         }

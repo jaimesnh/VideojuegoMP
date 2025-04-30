@@ -12,6 +12,7 @@ import java.util.List;
 
 
 public class Player extends User {
+
     private String id;
     private Armor armor;
     private Weapon[] weapons = new Weapon[2];
@@ -24,6 +25,8 @@ public class Player extends User {
     private long lastLostFight;
     private Modifier[] modifiers = new Modifier[2];
     private List<Challenge> challenges = new ArrayList();
+
+    public Player() {}
 
     public Player(String name, String nick, String password, String id) {
         super(name, nick, password);

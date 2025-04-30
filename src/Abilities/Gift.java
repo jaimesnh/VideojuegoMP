@@ -6,18 +6,15 @@ import SystemGame.SystemGame;
 public class Gift extends SpecialAbility{
     private int minimumRange;
 
+    public Gift() {
+        super();
+    }
+
     public Gift (String name, int attack, int defense, int minimumRange){
         super(name, attack, defense);
         this.minimumRange = minimumRange;
     }
 
-  //  public int useGift(int amountRange) {
-    //    if (amountRange >= this.minimumRange) {
-      //      return super.getAttack();
-    //    } else {
-      //      return 0;
-   //     }
-  //  }
 
     public String toString() {
         return super.toString() + String.format(", minimum range: %d", minimumRange);

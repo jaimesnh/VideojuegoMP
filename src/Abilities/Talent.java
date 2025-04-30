@@ -6,6 +6,9 @@ import SystemGame.SystemGame;
 public class Talent extends SpecialAbility{
     private int minimumRange;
 
+    public Talent() {
+        super();
+    }
     public Talent (String name, int attack, int defense){
         super(name, attack, defense);
     }

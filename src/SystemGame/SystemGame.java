@@ -29,6 +29,8 @@ public class SystemGame {
     public static List<Devil> devilsAvailable = new ArrayList<>();
 
 
+    public SystemGame() {}
+
     //SINGLETON
     public static SystemGame getInstance() {
         if (instance == null) {
@@ -49,8 +51,7 @@ public class SystemGame {
         boolean exit = false;
         while (!exit) {
             // If the user is a player, manage the notifications
-            if (this.loggedUser instanceof Player) {
-                Player player = (Player) this.loggedUser;
+            if (this.loggedUser instanceof Player player) {
                 player.manageNotifications();
             }
 
@@ -64,7 +65,7 @@ public class SystemGame {
 
     // Load the game
     private void load() {
-        SystemGame game = (SystemGame) adapter.load(Const.DATA_PATH);
+        SystemGame game = (SystemGame) adapter.loadFile(Const.DATA_PATH);
 
         if (game != null) {
             this.replaceSettings(game);
@@ -106,14 +107,14 @@ public class SystemGame {
     }
 
     private Map<String, Object> retrieveStaticState() {
-        return (Map<String, Object>) adapter.load(Const.STATE_PATH);
+        return (Map<String, Object>) adapter.loadFile(Const.STATE_PATH);
     }
 
     // Save the game
     private void save() {
-        adapter.save(this, Const.DATA_PATH);
+        adapter.saveFile(this, Const.DATA_PATH);
 
-        adapter.save(this.createStaticState(), Const.STATE_PATH);
+        adapter.saveFile(this.createStaticState(), Const.STATE_PATH);
     }
 
     // Method to create the data structure to save on disc

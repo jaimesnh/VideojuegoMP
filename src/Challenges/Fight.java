@@ -16,6 +16,8 @@ public class Fight {
     private Player[] players;
     private final int MAX_ROUNDS = 100;
 
+    public Fight() {}
+
     // Constructor
     public Fight(Player player1, Player player2) {
         this.players = new Player[2];

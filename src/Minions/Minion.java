@@ -5,6 +5,9 @@ public abstract class Minion {
     private String name;
     private int health;
 
+    public Minion() {
+    }
+
     // Constructor
     public Minion(String name, int health) {
         this.name = name;

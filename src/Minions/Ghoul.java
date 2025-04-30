@@ -6,6 +6,10 @@ public class Ghoul extends Minion {
 
     private int dependency;
 
+    public Ghoul() {
+        super();
+    }
+
     // Constructor
     public Ghoul(String name, int health, int dependency) {
         super(name, health);

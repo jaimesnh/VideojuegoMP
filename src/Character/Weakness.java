@@ -4,6 +4,8 @@ public class Weakness extends Modifier {
 
     private int sensitivity;
 
+    public Weakness() {}
+
     // Constructor
     public Weakness(String name, int sensitivity) {
         super(name);

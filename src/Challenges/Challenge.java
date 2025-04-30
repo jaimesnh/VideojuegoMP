@@ -13,6 +13,7 @@ public class Challenge {
     private Fight result;
     private Player winner;
 
+    public Challenge() {}
     // Contructor
     public Challenge(Player player1, Player player2, int gold) {
         this.gold = gold;
@@ -87,7 +88,7 @@ public class Challenge {
             loser.payGoldTo(fee, this.winner);
         } else {
             String msg = "El jugador desafiado no tiene fondos suficientes para pagar la cuota. Será baneado.";
-            MenuBuilder.alert("Oro insuficiente", msg);
+            MenuUtils.alert("Oro insuficiente", msg);
             int gold = loser.getGold();
             loser.payGoldTo(gold, this.winner);
         }
@@ -109,7 +110,7 @@ public class Challenge {
         ArrayList<String> log = this.result.getLog();
         String[] fixedLog = log.toArray(String[]::new);
 
-        MenuBuilder.doc("Resultado del desafío", fixedLog);
+        MenuUtils.doc("Resultado del desafío", fixedLog);
     }
 
     private void finishChallenge() {

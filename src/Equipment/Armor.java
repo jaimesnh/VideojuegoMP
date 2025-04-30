@@ -4,6 +4,10 @@ import java.util.ArrayList;
 
 public class Armor extends Equipment{
 
+    public Armor() {
+        super();
+    }
+
     public Armor(String name, int attackModifier, int defenseModifier) {
         super(name, attackModifier, defenseModifier);
     }

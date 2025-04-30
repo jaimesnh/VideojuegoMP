@@ -5,6 +5,8 @@ public abstract class User {
     private String nick;
     private String password;
 
+    public User() {}
+
     public User(String name, String nick, String password) {
         this.name = name;
         this.nick = nick;

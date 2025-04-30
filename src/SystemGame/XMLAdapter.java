@@ -7,36 +7,45 @@ import java.nio.file.Paths;
 
 public class XMLAdapter implements Adapter {
 
-    @Override
-    public void save(Object data, String path) {
-        String fullPath = getFullPath(path);
-        File file = new File(fullPath);
+    public void saveFile(Object data, String filePath) {
+        String finalPath = getFilePath(filePath);
 
-        // Crear directorio si es necesario
-        File parent = file.getParentFile();
-        if (parent != null && !parent.exists()) parent.mkdirs();
+        try {
+            File file = new File(finalPath);
 
-        try (XMLEncoder encoder = new XMLEncoder(new BufferedOutputStream(new FileOutputStream(file)))) {
-            encoder.writeObject(data);
-            System.out.println("Archivo XML guardado en: " + fullPath);
+            File parent = file.getParentFile();
+            if (parent != null && !parent.exists()) {
+                if (!parent.mkdirs()) {
+                    System.err.println("No se pudo crear el directorio: " + parent.getAbsolutePath());
+                    return;
+                }
+            }
+
+            try (XMLEncoder encoder = new XMLEncoder(new BufferedOutputStream(new FileOutputStream(file)))) {
+                encoder.writeObject(data);
+                System.out.println("Archivo guardado exitosamente.");
+            }
+
         } catch (IOException e) {
-            System.err.println("Error al guardar archivo XML: " + e.getMessage());
+            System.err.println("Error al guardar el archivo: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 
-    @Override
-    public Object load(String path) {
-        String fullPath = getFullPath(path);
+    public Object loadFile(String filePath) {
+        String finalPath = getFilePath(filePath);
+        System.out.println("Leyendo de: " + finalPath);
 
-        try (XMLDecoder decoder = new XMLDecoder(new BufferedInputStream(new FileInputStream(fullPath)))) {
+        try (XMLDecoder decoder = new XMLDecoder(new BufferedInputStream(new FileInputStream(finalPath)))) {
             return decoder.readObject();
         } catch (IOException e) {
-            System.err.println("Error al leer archivo XML: " + e.getMessage());
+            System.err.println("Error al leer el archivo: " + e.getMessage());
+            e.printStackTrace();
             return null;
         }
     }
 
-    private String getFullPath(String relativePath) {
+    public static String getFilePath(String relativePath) {
         return Paths.get(System.getProperty("user.dir"), relativePath).toString();
     }
 }

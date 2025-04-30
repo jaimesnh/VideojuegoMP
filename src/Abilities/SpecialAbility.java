@@ -6,6 +6,8 @@ public abstract class SpecialAbility {
     private int attack;
     private int defense;
 
+    public SpecialAbility() {}
+
     public SpecialAbility(String name, int attack, int defense) {
         this.name = name;
         this.attack = attack;

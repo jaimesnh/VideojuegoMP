@@ -5,6 +5,8 @@ public abstract class Equipment {
     private int attack;
     private int defense;
 
+    public Equipment() {}
+
     public Equipment(String name, int attack, int defense) {
         this.name = name;
         this.attack = attack;

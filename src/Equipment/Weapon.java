@@ -5,6 +5,10 @@ import java.util.ArrayList;
 public class Weapon extends Equipment {
     private int handsRequired;
 
+    public Weapon() {
+        super();
+    }
+
     public Weapon(String name, int handsRequired, int attack, int defense) {
         super(name, attack, defense);
         this.handsRequired = handsRequired;

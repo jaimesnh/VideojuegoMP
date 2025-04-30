@@ -4,6 +4,8 @@ public class Strength extends Modifier {
 
     private int power;
 
+    public Strength() {}
+
     // Constructor
     public Strength(String name, int effectiveness) {
         super(name);
