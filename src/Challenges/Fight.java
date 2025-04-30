@@ -1,9 +1,12 @@
 package Challenges;
 
-import java.util.ArrayList;
+import Character.*;
+import Character.Character;
 import Utils.MenuUtils;
 import User.Player;
+import java.util.ArrayList;
 
+public class Fight {
     private int rounds;
     private String date;
     private Player winner;

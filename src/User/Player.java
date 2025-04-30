@@ -1,5 +1,6 @@
 package User;
 
+import Utils.Const;
 import SystemGame.SystemGame;
 import Abilities.*;
 import Challenges.Challenge;
@@ -24,12 +25,12 @@ public class Player extends User {
     private Modifier[] modifiers = new Modifier[2];
     private List<Challenge> challenges = new ArrayList();
 
-    public Player(String id, String nick, String password) {
-        super(id, nick, password);
+    public Player(String name, String nick, String password, String id) {
+        super(name, nick, password);
         this.id = id;
-        this.pendingChallenge = false;
+        this.pendingNotification = false;
         this.banned = false;
-        this.gold = 500;
+        this.gold = Const.INITIAL_GOLD;
     }
 
     public void addChallengeToHistory(Challenge challenge) {

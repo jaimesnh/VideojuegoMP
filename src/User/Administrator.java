@@ -1,24 +1,25 @@
 package User;
 
+import Challenges.Challenge;
+import Character.*;
+import Utils.MenuUtils;
+
 public class Administrator extends User {
-
-        public Administrator() {}
-
 
         public Administrator(String name, String nick, String password) {
                 super(name, nick, password);
         }
 
-      //EL ADMINISTRADOR NO TIENE SCORE
+        //EL ADMINISTRADOR NO TIENE SCORE
         public int getScore() {
                 return 0;
         }
 
         // GESTIONAR DESAFIO
         public void manageChallenge(Challenge challenge) {
-//ADMINISTRADOR ACEPTA O RECHAZA GESTIONAR EL DESAFIO
+        //ADMINISTRADOR ACEPTA O RECHAZA GESTIONAR EL DESAFIO
                 String msg1 = String.format("¿Quieres gestionar el desafío entre %s y %s?", challenge.getChallengerPlayer().getName(), challenge.getChallengedPlayer().getName());
-                boolean opt = MenuBuilder.askYesNo(msg1);
+                boolean opt = MenuUtils.askYesNo(msg1);
 
                //NO
                 if (!opt) {
@@ -32,7 +33,7 @@ public class Administrator extends User {
                 // BANEAR AL DESAFIADO SI HA PERDIDO RECIENTEMENTE
                 if (player2.defeatedRecently()) {
                         String message = "El jugador desafiado perdió una batalla recientemente. Será baneado.";
-                        boolean banopt = MenuBuilder.askYesNo(message);
+                        boolean banopt = MenuUtils.askYesNo(message);
                         if (banopt) {
                                 player1.ban();
                                 return;
@@ -46,7 +47,7 @@ public class Administrator extends User {
                 if (!player2.canAfford(challenge.getGold())) {
                         challenge.setGold(player2.getGold());
                         String msg = String.format("La apuesta se ha ajustado a %d", challenge.getGold());
-                        MenuBuilder.alert("Advertencia de desafío", msg);
+                        MenuUtils.alert("Advertencia de desafío", msg);
                 }
 
                 //APROBAR DESAFIO
@@ -59,7 +60,7 @@ public class Administrator extends User {
 
         private void manageRules(Challenge challenge, Player player1, Player player2) {
                 String[] options = { "Manage Player 1", "Manage Player 2", "Exit" };
-                int opt = MenuBuilder.menu("Manage Challenge", options);
+                int opt = MenuUtils.menu("Manage Challenge", options);
 
                 if (opt == 1) {
                         this.managePlayer(player1);
@@ -75,8 +76,8 @@ public class Administrator extends User {
                 String[] options = { "Manage Equipment", "Modify Character", "Alter Modifiers", "Modify Special Ability", "Exit" };
 
                 while (true) {
-                        MenuBuilder.setConfigLastAsZero(true);
-                        int opt = MenuBuilder.menu("Manage Player", options);
+                        MenuUtils.setConfigLastAsZero(true);
+                        int opt = MenuUtils.menu("Manage Player", options);
 
                         if (opt == 1) {
                                 player.manageEquipment();

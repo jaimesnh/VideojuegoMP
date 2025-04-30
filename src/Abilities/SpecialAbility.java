@@ -1,6 +1,6 @@
 package Abilities;
 
-public class SpecialAbility {
+public abstract class SpecialAbility {
 
     private String name;
     private int attack;
@@ -13,7 +13,15 @@ public class SpecialAbility {
 
     }
     public String toString() {
-        return String.format("%s, attack:%d, defense:%d", name, attack, defense);
+        return String.format("%s, ataque:%d, defensa:%d", name, attack, defense);
+    }
+
+    public int abilityAttack() {
+        return this.attack;
+    }
+
+    public int abilityDefense() {
+        return this.defense;
     }
 
     public void setName(String name) {

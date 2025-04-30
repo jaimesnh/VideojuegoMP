@@ -1,10 +1,9 @@
 package Character;
-import src.abilities.SpecialAbility;
-import src.equipment.*;
-import src.minions.*;
-// Import statements
-import src.modifiers.*;
-import src.users.Player;
+
+import Abilities.SpecialAbility;
+import Equipment.*;
+import Minions.*;
+import User.Player;
 
 public abstract class Character {
 
@@ -16,9 +15,13 @@ public abstract class Character {
     private int minionsHealth;
     protected Equipment[] equipment;
     protected SpecialAbility special;
-    Load initial
-    values for
-    the character
+
+    public Character(Player player) {
+        this.loadInitialValues();
+        this.assignEquipment(player);
+        this.assignModifiers(player);
+        this.assignSpecial(player);
+    }
 
     public abstract void loadInitialValues();
 
@@ -154,7 +157,7 @@ public abstract class Character {
             }
             if (m instanceof Strength) {
                 Strength s = (Strength) m;
-                sum += s.getEffectiveness();
+                sum += s.getPower();
             }
         }
         return sum;
@@ -294,11 +297,4 @@ public abstract class Character {
     }
 
 
-    public Character(Player player) {
-        this.loadInitialValues();
-        // Assign player's weapons and armor to the character
-        this.assignEquipment(player);
-        this.assignModifiers(player);
-        this.assignSpecial(player);
-    }
 }

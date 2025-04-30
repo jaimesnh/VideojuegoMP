@@ -521,7 +521,7 @@ public class SystemGame {
     }
 
     private void showPlayerInfo(Player player) {
-        player.showInfo();
+        player.showPlayerInfo();
     }
 
     // Method to manage equipment
@@ -577,7 +577,7 @@ public class SystemGame {
             boolean answer = MenuUtils.askYesNo("¿Estas seguro de añadir esta armadura?");
 
             if (answer) {
-                Game.armorsAvailable.add(armor);
+                SystemGame.armorsAvailable.add(armor);
             } else {
                 MenuUtils.alert("Operación cancelada", "Esta armadura no ha sido añadida");
             }
@@ -600,7 +600,7 @@ public class SystemGame {
 
         // If the user confirms, remove the armor from the armors available
         if (confirm) {
-            Game.armorsAvailable.remove(answer);
+            SystemGame.armorsAvailable.remove(answer);
         } else {
             MenuUtils.alert("Operación cancelada", "Esta armadura no ha sido eliminada");
         }
