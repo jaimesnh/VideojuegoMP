@@ -55,7 +55,7 @@ public class Hunter extends Character {
     public static void modifyAttributes() {
         while(true) {
             showAttributes();
-            String[] options = new String[]{"Alter Max Health", "Alter Max Power", "Alter Max Willpower", "Alter Initial Minions", "Exit"};
+            String[] options = new String[]{"Modificar salud máxima", "Modificar poder máximo", "Modificar voluntad máxima", "Modificar esbirros iniciales", "Salir"};
             int opt = MenuUtils.menu("Modify Hunter", options);
             if (opt >= options.length) {
                 return;
@@ -66,8 +66,8 @@ public class Hunter extends Character {
     }
 
     public static void alterAttr(int opt) {
-        String[] attributes = new String[]{"Max Health", "Max Power", "Max Willpower", "Initial Minions"};
-        String msg = "Enter the new value for the " + attributes[opt] + "(Positive Value)";
+        String[] attributes = new String[]{"Salud máxima", "Poder máximo", "Voluntad Máxima", "Esbirros iniciales"};
+        String msg = "Inserta el nuevo valor para " + attributes[opt] + "(Valor positivo)";
         int value = MenuUtils.readInt(msg, 0, 1000);
         switch (opt) {
             case 1 -> MAX_HEALTH = value;
@@ -79,8 +79,8 @@ public class Hunter extends Character {
     }
 
     public static void showAttributes() {
-        String[] attributes = new String[]{"Max Health: " + MAX_HEALTH, "Max Power: " + MAX_POWER, "Max Willpower: " + MAX_WILLPOWER, "Initial Minions: " + INIT_MINIONS};
-        MenuUtils.doc("Hunter Attributes", attributes);
+        String[] attributes = new String[]{"Salud máxima: " + MAX_HEALTH, "Poder máximo: " + MAX_POWER, "Voluntad máxima: " + MAX_WILLPOWER, "Esbirros iniciales: " + INIT_MINIONS};
+        MenuUtils.doc("Atributos del cazador", attributes);
     }
 
     public int getWillpower() {
