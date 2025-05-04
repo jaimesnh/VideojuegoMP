@@ -16,11 +16,11 @@ public class Const {
     };
 
     public static final String[][] WEAPONS = {
-            // Nombre, Modificador de ataque, Modificador de defensa, Manos
-            { "Escudo", "0", "3", "1" },
-            { "Cuchillo", "1", "0", "1" },
-            { "Lanza", "4", "0", "2" },
-            { "Daga maldita", "4", "1", "1" }
+            // Nombre, Manos, Modificador de ataque, Modificador de defensa
+            { "Escudo", "1", "0", "3" },
+            { "Cuchillo", "1", "1", "0" },
+            { "Lanza", "2", "3", "1" },
+            { "Daga maldita", "1", "2", "0" }
     };
 
     public static final String[][] STRENGHTS = {
