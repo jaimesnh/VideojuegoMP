@@ -61,8 +61,8 @@ public class Administrator extends User {
 
 
         private void manageRules(Challenge challenge, Player player1, Player player2) {
-                String[] options = { "Manage Player 1", "Manage Player 2", "Exit" };
-                int opt = MenuUtils.menu("Manage Challenge", options);
+                String[] options = { "Administrar Jugador 1", "Administrar Jugador 2", "Salir" };
+                int opt = MenuUtils.menu("Administrar Desafio", options);
 
                 if (opt == 1) {
                         this.managePlayer(player1);
@@ -75,11 +75,11 @@ public class Administrator extends User {
 
 
         private void managePlayer(Player player) {
-                String[] options = { "Manage Equipment", "Modify Character", "Alter Modifiers", "Modify Special Ability", "Exit" };
+                String[] options = {"Administrar equipo", "Modificar personaje", "Alterar modificadores", "Modificar habilidad especial", "Salir"};
 
                 while (true) {
                         MenuUtils.setConfigLastAsZero(true);
-                        int opt = MenuUtils.menu("Manage Player", options);
+                        int opt = MenuUtils.menu("Administrar Jugador", options);
 
                         if (opt == 1) {
                                 player.manageEquipment();

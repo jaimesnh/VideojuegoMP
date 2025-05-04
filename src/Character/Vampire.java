@@ -82,8 +82,8 @@ public class Vampire extends Character {
         while (true) {
             showAttributes();
 
-            String[] options = { "Alter Max Health", "Alter Max Power", "Alter Max Blood", "Alter Initial Minions", "Exit" };
-            int opt = MenuUtils.menu("Modify Hunter", options);
+            String[] options = { "Modificar Salud Máxima", "Modificar Poder Máximo", "Modificar Sangre Máxima", "Modificar Esbirros Iniciales", "Salir" };
+            int opt = MenuUtils.menu("Modificar vampiro", options);
 
             if (opt < options.length) {
                 alterAttr(opt);
@@ -94,8 +94,8 @@ public class Vampire extends Character {
     }
 
     public static void alterAttr(int opt) {
-        String[] attributes = { "Max Health", "Max Power", "Max Blood", "Initial Minions" };
-        String msg = "Enter the new value for the " + attributes[opt] + "(Positive Value)";
+        String[] attributes = { "Salud Máxima", "Poder Máximo", "Ira Máxima", "Esbirros Iniciales" };
+        String msg = "Introduce el nuevo valor para " + attributes[opt] + " (Valor positivo)";
         int value = MenuUtils.readInt(msg, 0, 1000);
 
         switch (opt) {
@@ -107,9 +107,9 @@ public class Vampire extends Character {
     }
 
     public static void showAttributes() {
-        String[] attributes = { "Max Health: " + MAX_HEALTH, "Max Power: " + MAX_POWER, "Max Blood: " + MAX_BLOOD, "Initial Minions: " + INIT_MINIONS };
+        String[] attributes = { "Salud Máxima : " + MAX_HEALTH, "Poder Máximo : " + MAX_POWER, "Sangre Máxima : " + MAX_BLOOD, "Minions iniciales: " + INIT_MINIONS};
 
-        MenuUtils.doc("Vampire Attributes", attributes);
+        MenuUtils.doc("Atributos del Vampiro", attributes);
     }
 
     public void successAtack() {

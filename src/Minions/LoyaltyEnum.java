@@ -1,7 +1,5 @@
 package Minions;
 
 public enum LoyaltyEnum {
-    HIGH,
-    REGULAR,
-    LOW,
+    ALTA, BAJA, NORMAL
 }

@@ -2,102 +2,88 @@ package Utils;
 
 public class Const {
 
-    // Constants for the file paths
     public static final String DATA_PATH = "/data/game.xml";
     public static final String STATE_PATH = "/data/state.xml";
 
-    // Constants for the game rules
     public static final int INITIAL_GOLD = 500;
 
-    // Default Available Armors
     public static final String[][] ARMORS = {
-            // Name, Attack Modifier, Defense Modifier
-            { "Leather Armor", "0", "1" },
-            { "Chainmail Armor", "0", "2" },
-            { "Plate Armor", "0", "3" },
-            { "Dragon Armor", "1", "3" },
+            // Nombre, Modificador de ataque, Modificador de defensa
+            { "Armadura de cuero", "0", "1" },
+            { "Armadura de escamas de dragon", "2", "1" },
+            { "Armadura forjada de hierro", "0", "5" },
+            { "Armadura de obsidiana", "0", "7" },
     };
 
-    // Default Available Weapons
     public static final String[][] WEAPONS = {
-            // Name, Attack Modifier, Defense Modifier, Hands
-            { "Dagger", "1", "1", "1" },
-            { "Sword", "2", "2", "1" },
-            { "Axe", "3", "1", "2" },
-            { "Dragon Slayer", "3", "2", "2" },
+            // Nombre, Modificador de ataque, Modificador de defensa, Manos
+            { "Escudo", "0", "3", "1" },
+            { "Cuchillo", "1", "0", "1" },
+            { "Lanza", "4", "0", "2" },
+            { "Daga maldita", "4", "1", "1" }
     };
 
-    // Default Available Strenghts
     public static final String[][] STRENGHTS = {
-            //Name, modifier
-            { "Moonlight","4" },
-            { "Darkness", "3" },
-            { "Fire", "1" },
-            { "Magic", "2" }
-
+            // Nombre, Modificador
+            { "Piel dura", "4" },
+            { "Dia lluvioso", "1" },
+            { "Luna roja", "3" },
+            { "Dolor", "4" }
     };
 
-    // Default Available Weaknesses
     public static final String[][] WEAKNESSES = {
-            //Name, modifier
-            {"Garlic","3"},
-            { "Silver", "2" },
-            { "Holy Water", "3" },
-            { "Sunlight", "4" }
+            // Nombre, Modificador
+            { "Ruidos fuertes", "2" },
+            { "Ambientes frios", "4" },
+            { "Plata", "5" },
+            { "Agua bendita", "3" }
     };
 
-    // Default Available Dones
-    public static final String[][] DONES = {
-            // Name, Attack Modifier, Defense Modifier, Cost
-            { "Claw", "1", "1", "2" },
-            { "Bite", "2", "2", "3" },
-            { "Tail", "2", "3", "4" },
-            { "Roar", "1", "2", "5" }
+    public static final String[][] DONS = {
+            // Nombre, Modificador de ataque, Modificador de defensa, Coste
+            { "Furia instintiva", "2", "0", "1" },
+            { "Garra espiritual", "3", "1", "3" },
+            { "Rugido atemorizante", "0", "4", "2" },
+            { "Furia lunar", "4", "2", "5" }
     };
 
-    // Default Available Disciplines
     public static final String[][] DISCIPLINES = {
-            // Name, Attack Modifier, Defense Modifier, Cost
-            { "Bloodlust", "1", "3", "2" },
-            { "Frenzy", "2", "1", "3" },
-            { "Rage", "3", "2", "4" },
-            { "Vampirism", "1", "3", "5" }
+            // Nombre, Modificador de ataque, Modificador de defensa, Coste
+            { "Celeridad sobrenatural", "3", "3", "5" },
+            { "Dominacion mental", "2", "0", "4" },
+            { "Fortaleza vampirica", "0", "3", "2" },
+            { "Transformacion parcial", "4", "1", "5" }
     };
 
-    // Default Available Talents
     public static final String[][] TALENTS = {
-            // Name, Attack Modifier, Defense Modifier, Cost
-            { "Sneak", "1", "1" },
-            { "Hide", "2", "2" },
-            { "Backstab", "2", "3" },
-            { "Assassinate", "1", "2" }
+            // Nombre, Modificador de ataque, Modificador de defensa
+            { "Maestro de armas", "3", "1" },
+            { "Investigador", "3", "3" },
+            { "Trampa improvisada", "2", "0" },
+            { "Experto en monstruos", "0", "4" }
     };
 
-    // Default Available Ghouls
     public static final String[][] GHOULS = {
-            // Name, Health, Dependency
-            { "Ghoul", "1", "1" },
-            { "Vampire", "1", "2" },
-            { "Werewolf", "2", "3" },
-            { "Zombie", "2", "4" }
+            // Nombre, Salud, Dependencia
+            { "Morzul", "1", "3" },
+            { "Dumbor", "3", "1" },
+            { "Gulshak", "4", "3" },
+            { "Zargor", "2", "2" }
     };
 
-    // Default Available Humans
     public static final String[][] HUMANS = {
-            // Name, Health, Loyalty
-            { "Knight", "1", "HIGH" },
-            { "Archer", "1", "LOW" },
-            { "Mage", "2", "REGULAR" },
-            { "Peasant", "2", "LOW" },
-            { "Rogue", "1", "HIGH" }
+            // Nombre, Salud, Lealtad
+            { "Curandera", "1", "NORMAL" },
+            { "Campesino", "1", "ALTA" },
+            { "Espadachin", "2", "NORMAL" },
+            { "Caballero", "3", "BAJA" }
     };
 
-    // Default Available Devils
     public static final String[][] DEVILS = {
-            // Name, Health, Devils
-            {"Lucifer", "3", "..."},
-            {"Beelzebub", "3", "..."},
-            {"Mephistopheles", "4", "..."},
-            {"Satan", "4", "..."}
+            // Nombre, Salud, Pacto
+            { "Lilith", "2", "_" },
+            { "Leviatan", "4", "_" },
+            { "Behemoth", "1", "_" },
+            { "Azazel", "3", "_" }
     };
 }

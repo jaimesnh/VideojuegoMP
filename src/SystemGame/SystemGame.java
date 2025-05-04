@@ -81,7 +81,7 @@ public class SystemGame {
         SystemGame.weaponsAvailable = Weapon.loadFromArray(Const.WEAPONS);
         SystemGame.modifiersAvailable = Modifier.loadFromArray(Const.STRENGHTS, Const.WEAKNESSES);
         SystemGame.talentsAvailable = Talent.loadFromArray(Const.TALENTS);
-        SystemGame.giftsAvailable = Gift.loadFromArray(Const.DONES);
+        SystemGame.giftsAvailable = Gift.loadFromArray(Const.DONS);
         SystemGame.disciplinesAvailable = Discipline.loadFromArray(Const.DISCIPLINES);
         SystemGame.ghoulsAvailable = Ghoul.loadFromArray(Const.GHOULS);
         SystemGame.humansAvailable = Human.loadFromArray(Const.HUMANS);

@@ -62,8 +62,8 @@ public class Lycanthrope extends Character {
         while (true) {
             showAttributes();
 
-            String[] options = { "Alter Max Health", "Alter Max Power", "Alter Max Rage", "Alter Initial Minions", "Exit" };
-            int opt = MenuUtils.menu("Modify Lycanthrope", options);
+            String[] options = {"Modificar Salud Máxima", "Modificar Poder Máximo", "Modificar rabia Máxima", "Modificar Esbirros Iniciales", "Salir"};
+            int opt = MenuUtils.menu("Modificar licántropo", options);
 
             // Alter the attribute selected by the user, if the user decides to exit, break the loop
             if (opt < options.length) {
@@ -75,8 +75,8 @@ public class Lycanthrope extends Character {
     }
 
     public static void alterAttr(int opt) {
-        String[] attributes = { "Max Health", "Max Power", "Max Rage", "Initial Minions" };
-        String msg = "Enter the new value for the " + attributes[opt] + "(Positive Value)";
+        String[] attributes = { "Salud Máxima", "Poder Máximo", "Ira Máxima", "Esbirros Iniciales"};
+        String msg = "Introduce el nuevo valor para " + attributes[opt] + " (Valor positivo)";
         int value = MenuUtils.readInt(msg, 0, 1000);
 
         switch (opt) {
@@ -88,9 +88,9 @@ public class Lycanthrope extends Character {
     }
 
     public static void showAttributes() {
-        String[] attributes = { "Max Health: " + MAX_HEALTH, "Max Power: " + MAX_POWER, "Max Rage: " + MAX_RAGE, "Initial Minions: " + INIT_MINIONS };
+        String[] attributes = { "Salud Máxima: " + MAX_HEALTH, "Poder Máximo: " + MAX_POWER, "Rabia Máxima: " + MAX_RAGE, "Minions Iniciales: " + INIT_MINIONS };
 
-        MenuUtils.doc("Lycanthrope Attributes", attributes);
+        MenuUtils.doc("Atributos del licantropo", attributes);
     }
 
     // GETTERS/SETTERS

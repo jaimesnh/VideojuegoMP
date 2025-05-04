@@ -17,7 +17,7 @@ public class Gift extends SpecialAbility{
 
 
     public String toString() {
-        return super.toString() + String.format(", minimum range: %d", minimumRange);
+        return super.toString() + String.format(", rango mínimo: %d", minimumRange);
     }
 
     public static String[] listAvailableGifts() {

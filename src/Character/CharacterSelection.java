@@ -11,13 +11,13 @@ public enum CharacterSelection {
     public String toString() {
         switch (this.ordinal()) {
             case 0 -> {
-                return "Lycanthrope";
+                return "Licántropo";
             }
             case 1 -> {
-                return "Vampire";
+                return "Vampiro";
             }
             case 2 -> {
-                return "Hunter";
+                return "Cazadores";
             }
             default -> {
                 return "Unknown";

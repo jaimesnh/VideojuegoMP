@@ -56,7 +56,7 @@ public class Hunter extends Character {
         while(true) {
             showAttributes();
             String[] options = new String[]{"Modificar salud máxima", "Modificar poder máximo", "Modificar voluntad máxima", "Modificar esbirros iniciales", "Salir"};
-            int opt = MenuUtils.menu("Modify Hunter", options);
+            int opt = MenuUtils.menu("Modificar cazador", options);
             if (opt >= options.length) {
                 return;
             }

@@ -58,17 +58,17 @@ public class Player extends User {
         info[2] = "Oro: " + gold;
         info[3] = "Baneado: " + (this.banned ? "Si" : "No");
         info[4] = "Personaje: " + this.currentCharacter.name().toLowerCase();
-        String var4 = this.armor != null ? this.armor.getName() : "None";
+        String var4 = this.armor != null ? this.armor.getName() : "Sin Asignar";
         info[5] = "Armadura: " + var4;
-        var4 = this.weapons[0] != null ? this.weapons[0].getName() : "None";
+        var4 = this.weapons[0] != null ? this.weapons[0].getName() : "Sin Asignar";
         info[6] = "Arma 1: " + var4;
-        var4 = this.weapons[1] != null ? this.weapons[0].getName() : "None";
+        var4 = this.weapons[1] != null ? this.weapons[0].getName() : "Sin Asignar";
         info[7] = "Arma 2: " + var4;
-        var4 = this.modifiers[0] != null ? this.modifiers[0].getName() : "None";
+        var4 = this.modifiers[0] != null ? this.modifiers[0].getName() : "Sin Asignar";
         info[8] = "Modificador 1" + var4;
-        var4 = this.modifiers[1] != null ? this.modifiers[1].getName() : "None";
+        var4 = this.modifiers[1] != null ? this.modifiers[1].getName() : "Sin Asignar";
         info[9] = "Modificador 2" + var4;
-        var4 = this.specialAbility != null ? this.specialAbility.getName() : "None";
+        var4 = this.specialAbility != null ? this.specialAbility.getName() : "Sin Asignar";
         info[10] = "Habilidad especial" + var4;
         info[11] = "Desafíos pendientes: " + (this.pendingChallenge != null ? "Si" : "No");
         String[] data = info;
@@ -125,8 +125,8 @@ public class Player extends User {
 
     public void showModifiers() {
         String[] info = new String[2];
-        info[0] = "Modificador 1: " + (this.modifiers[0] != null ? this.modifiers[0].getName() : "None");
-        info[1] = "Modificador 2: " + (this.modifiers[1] != null ? this.modifiers[1].getName() : "None");
+        info[0] = "Modificador 1: " + (this.modifiers[0] != null ? this.modifiers[0].getName() : "Sin Asignar");
+        info[1] = "Modificador 2: " + (this.modifiers[1] != null ? this.modifiers[1].getName() : "Sin Asignar");
         String[] data = info;
         MenuUtils.doc("Modificadores", data);
     }
@@ -162,7 +162,7 @@ public class Player extends User {
 
     public void showSpecialAbilities() {
         String[] info = new String[1];
-        info[0] = "Habilidad especial: " + (this.specialAbility != null ? this.specialAbility.getName() : "None");
+        info[0] = "Habilidad especial: " + (this.specialAbility != null ? this.specialAbility.getName() : "Sin Asignar");
         String[] data = info;
         MenuUtils.doc("Habilidades especiales", data);
     }
@@ -194,12 +194,12 @@ public class Player extends User {
 
     public void showEquipment() {
         String[] info = new String[6];
-        info[0] = "Armadura: " + (this.armor != null ? this.armor.getName() : "None");
-        info[1] = "Arma 1: " + (this.weapons[0] != null ? this.weapons[0].getName() : "None");
-        info[2] = "Arma 2: " + (this.weapons[1] != null ? this.weapons[1].getName() : "None");
-        info[3] = "Habilidad especial: " + (this.specialAbility != null ? this.specialAbility.getName() : "None");
-        info[4] = "Modificador 1: " + (this.modifiers[0] != null ? this.modifiers[0].getName() : "None");
-        info[5] = "Modificador 2: " + (this.modifiers[1] != null ? this.modifiers[1].getName() : "None");
+        info[0] = "Armadura: " + (this.armor != null ? this.armor.getName() : "Sin Asignar");
+        info[1] = "Arma 1: " + (this.weapons[0] != null ? this.weapons[0].getName() : "Sin Asignar");
+        info[2] = "Arma 2: " + (this.weapons[1] != null ? this.weapons[1].getName() : "Sin Asignar");
+        info[3] = "Habilidad especial: " + (this.specialAbility != null ? this.specialAbility.getName() : "Sin Asignar");
+        info[4] = "Modificador 1: " + (this.modifiers[0] != null ? this.modifiers[0].getName() : "Sin Asignar");
+        info[5] = "Modificador 2: " + (this.modifiers[1] != null ? this.modifiers[1].getName() : "Sin Asignar");
         String[] data = info;
         MenuUtils.doc("Equipamiento", data);
     }
