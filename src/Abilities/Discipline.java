@@ -25,7 +25,7 @@ public class Discipline extends SpecialAbility {
     }
 
     public String toString() {
-        return super.toString() + String.format(", cost: %d", cost);
+        return super.toString() + String.format( " (" + "Coste: %d" + ")", cost);
     }
 
     public static String[] listAvailableDisciplines() {

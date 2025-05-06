@@ -15,7 +15,7 @@ public abstract class SpecialAbility {
 
     }
     public String toString() {
-        return String.format("%s, ataque:%d, defensa:%d", name, attack, defense);
+        return String.format("%s " + "(" + "Ataque: %d, Defensa: %d" + ")", name, attack, defense);
     }
 
     public int abilityAttack() {
