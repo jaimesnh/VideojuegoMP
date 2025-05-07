@@ -7,6 +7,7 @@ import Minions.Human;
 import Minions.LoyaltyEnum;
 import SystemGame.SystemGame;
 import User.Player;
+import Utils.TestingUtils;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 
@@ -70,7 +71,7 @@ class VampireTest {
 
     @Test
     void modifyAttributes() {
-        tests.TestingUtils.setInput(" ", "1", "-5", " ", "200", " ", "5");
+        TestingUtils.setInput(" ", "1", "-5", " ", "200", " ", "5");
 
         Vampire.modifyAttributes();
 
@@ -82,7 +83,7 @@ class VampireTest {
         int opt = 2;
         int value = 5;
 
-        tests.TestingUtils.setInput(String.valueOf(value));
+        TestingUtils.setInput(String.valueOf(value));
 
         Vampire.alterAttr(opt);
 
@@ -91,7 +92,7 @@ class VampireTest {
 
     @Test
     void showAttributes() {
-        tests.TestingUtils.setInput(" ");
+        TestingUtils.setInput(" ");
 
         assertDoesNotThrow(Vampire::showAttributes);
     }

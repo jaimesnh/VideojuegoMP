@@ -11,6 +11,7 @@ import Equipment.Armor;
 import Equipment.Weapon;
 import SystemGame.SystemGame;
 import Utils.Const;
+import Utils.TestingUtils;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 
@@ -28,20 +29,20 @@ class PlayerTest {
 
     @Test
     public void Player() {
-        Player player = new Player("Nombre", "Apodo", "Contraseña", "A11A1");
+        Player player = new Player("Nombre", "Apodo", "Contraseña", "RPG21");
 
         assertNotNull(player);
 
         assertEquals("Nombre", player.getName());
         assertEquals("Apodo", player.getNick());
         assertEquals("Contraseña", player.getPassword());
-        assertEquals("A11A1", player.getId());
+        assertEquals("RPG21", player.getId());
     }
 
     @Test
     void addChallengeToHistory() {
-        Player player1 = new Player("Nombre1", "Apodo1", "Contraseña1", "A11A1");
-        Player player2 = new Player("Nombre2", "Apodo2", "Contraseña2", "A11A2");
+        Player player1 = new Player("Nombre1", "Apodo1", "Contraseña1", "RPG21");
+        Player player2 = new Player("Nombre2", "Apodo2", "Contraseña2", "RPG00");
 
         Challenge challenge = new Challenge(player1, player2, 100);
 
@@ -52,7 +53,7 @@ class PlayerTest {
 
     @Test
     void hasChallenges() {
-        Player player = new Player("Nombre", "Apodo", "Contraseña", "A11A1");
+        Player player = new Player("Nombre", "Apodo", "Contraseña", "RPG21");
 
         assertFalse(player.hasChallenges());
 
@@ -64,7 +65,7 @@ class PlayerTest {
 
     @Test
     void getScore() {
-        Player player = new Player("Nombre", "Apodo", "Contraseña", "A11A1");
+        Player player = new Player("Nombre", "Apodo", "Contraseña", "RPG21");
 
         int score = player.getScore();
 
@@ -73,7 +74,7 @@ class PlayerTest {
 
     @Test
     void defeatedRecently() {
-        Player player = new Player("Nombre", "Apodo", "Contraseña", "A11A1");
+        Player player = new Player("Nombre", "Apodo", "Contraseña", "RPG21");
 
         boolean b = player.defeatedRecently();
 
@@ -88,7 +89,7 @@ class PlayerTest {
 
     @Test
     void ban() {
-        Player player = new Player("Nombre", "Apodo", "Contraseña", "A11A1");
+        Player player = new Player("Nombre", "Apodo", "Contraseña", "RPG21");
 
         assertFalse(player.isBanned());
 
@@ -99,7 +100,7 @@ class PlayerTest {
 
     @Test
     void unban() {
-        Player player = new Player("Nombre", "Apodo", "Contraseña", "A11A1");
+        Player player = new Player("Nombre", "Apodo", "Contraseña", "RPG21");
 
         player.ban();
 
@@ -112,48 +113,48 @@ class PlayerTest {
 
 //    @Test
 //    void manageModifiers() {
-//        Player player = new Player("Nombre", "Apodo", "Contraseña", "A11A1");
+//        Player player = new Player("Nombre", "Apodo", "Contraseña", "RPG21");
 //
 //        assertDoesNotThrow(() -> player.manageModifiers());
 //    }
 
     @Test
     void changeModifier() {
-        tests.TestingUtils.setInput("0");
-        Player player = new Player("Nombre", "Apodo", "Contraseña", "A11A1");
+        TestingUtils.setInput("0");
+        Player player = new Player("Nombre", "Apodo", "Contraseña", "RPG21");
 
         assertDoesNotThrow(() -> player.changeModifier(1));
     }
 
     @Test
     void changeSpecialAbility() {
-        tests.TestingUtils.setInput("0");
-        Player player = new Player("Nombre", "Apodo", "Contraseña", "A11A1");
+        TestingUtils.setInput("0");
+        Player player = new Player("Nombre", "Apodo", "Contraseña", "RPG21");
 
         assertDoesNotThrow(player::changeSpecialAbility);
     }
 
     @Test
     void showSpecialAbilities() {
-        tests.TestingUtils.setInput("");
+        TestingUtils.setInput("");
 
-        Player player = new Player("Nombre", "Apodo", "Contraseña", "A11A1");
+        Player player = new Player("Nombre", "Apodo", "Contraseña", "RPG21");
 
         assertDoesNotThrow(() -> player.showSpecialAbilities());
     }
 
     @Test
     void manageEquipment() {
-        Player player = new Player("Nombre", "Apodo", "Contraseña", "A11A1");
+        Player player = new Player("Nombre", "Apodo", "Contraseña", "RPG21");
 
         assertDoesNotThrow(player::manageEquipment);
     }
 
     @Test
     void changeArmor() {
-        tests.TestingUtils.setInput("1", "");
+        TestingUtils.setInput("1", "");
 
-        Player player = new Player("Nombre", "Apodo", "Contraseña", "A11A1");
+        Player player = new Player("Nombre", "Apodo", "Contraseña", "RPG21");
         SystemGame g = new SystemGame();
         g.loadDefaultSettings();
 
@@ -162,9 +163,9 @@ class PlayerTest {
 
     @Test
     void changeWeapon() {
-        tests.TestingUtils.setInput("1", "");
+        TestingUtils.setInput("1", "");
 
-        Player player = new Player("Nombre", "Apodo", "Contraseña", "A11A1");
+        Player player = new Player("Nombre", "Apodo", "Contraseña", "RPG21");
         SystemGame g = new SystemGame();
         g.loadDefaultSettings();
 
@@ -173,8 +174,8 @@ class PlayerTest {
 
     @Test
     void notifyChallenge() {
-        Player player1 = new Player("Nombre1", "Apodo1", "Contraseña1", "A11A1");
-        Player player2 = new Player("Nombre2", "Apodo2", "Contraseña2", "A11A2");
+        Player player1 = new Player("Nombre1", "Apodo1", "Contraseña1", "RPG21");
+        Player player2 = new Player("Nombre2", "Apodo2", "Contraseña2", "RPG00");
 
         Challenge challenge = new Challenge(player1, player2, 100);
 
@@ -185,7 +186,7 @@ class PlayerTest {
 
     @Test
     void manageNotifications() {
-        Player player = new Player("Nombre", "Apodo", "Contraseña", "A11A1");
+        Player player = new Player("Nombre", "Apodo", "Contraseña", "RPG21");
 
         player.manageNotifications();
 
@@ -194,8 +195,8 @@ class PlayerTest {
 
     @Test
     void payGoldTo() {
-        Player player1 = new Player("Nombre1", "Apodo1", "Contraseña1", "A11A1");
-        Player player2 = new Player("Nombre2", "Apodo2", "Contraseña2", "A11A2");
+        Player player1 = new Player("Nombre1", "Apodo1", "Contraseña1", "RPG21");
+        Player player2 = new Player("Nombre2", "Apodo2", "Contraseña2", "RPG00");
 
         player1.payGoldTo(50, player2);
 
@@ -206,7 +207,7 @@ class PlayerTest {
 
     @Test
     void canAfford() {
-        Player player = new Player("Nombre", "Apodo", "Contraseña", "A11A1");
+        Player player = new Player("Nombre", "Apodo", "Contraseña", "RPG21");
 
         assertTrue(player.canAfford(100));
 
@@ -215,11 +216,11 @@ class PlayerTest {
 
     @Test
     void acceptChallenge() {
-        tests.TestingUtils.setInput(" ", " ", " ", " ");
-        Player player1 = new Player("Nombre1", "Apodo1", "Contraseña1", "A11A1");
+        TestingUtils.setInput(" ", " ", " ", " ");
+        Player player1 = new Player("Nombre1", "Apodo1", "Contraseña1", "RPG21");
         player1.setCurrentCharacter(CharacterSelection.LYCANTHROPE);
         player1.setSpecialAbilities(new Gift("SpecialAbility", 10, 10, 10));
-        Player player2 = new Player("Nombre2", "Apodo2", "Contraseña2", "A11A2");
+        Player player2 = new Player("Nombre2", "Apodo2", "Contraseña2", "RPG00");
         player2.setCurrentCharacter(CharacterSelection.LYCANTHROPE);
         player2.setSpecialAbilities(new Gift("Habilidad Especial", 10, 10, 10));
         SystemGame g = new SystemGame();
@@ -236,26 +237,26 @@ class PlayerTest {
 
     @Test
     void getId() {
-        Player player = new Player("Nombre", "Apodo", "Contraseña", "A11A1");
+        Player player = new Player("Nombre", "Apodo", "Contraseña", "RPG21");
 
         String id = player.getId();
 
-        assertEquals("A11A1", id);
+        assertEquals("RPG21", id);
     }
 
     @Test
     void setId() {
-        Player player = new Player("Nombre", "Apodo", "Contraseña", "A11A1");
+        Player player = new Player("Nombre", "Apodo", "Contraseña", "RPG21");
 
-        player.setId("A11A2");
+        player.setId("RPG00");
         String id = player.getId();
 
-        assertEquals("A11A2", id);
+        assertEquals("RPG00", id);
     }
 
     @Test
     void getPendingChallenge() {
-        Player player = new Player("Nombre", "Apodo", "Contraseña", "A11A1");
+        Player player = new Player("Nombre", "Apodo", "Contraseña", "RPG21");
 
         assertNull(player.getPendingChallenge());
 
@@ -269,7 +270,7 @@ class PlayerTest {
 
     @Test
     void setPendingChallenge() {
-        Player player = new Player("Nombre", "Apodo", "Contraseña", "A11A1");
+        Player player = new Player("Nombre", "Apodo", "Contraseña", "RPG21");
 
         Challenge challenge = new Challenge();
 
@@ -281,7 +282,7 @@ class PlayerTest {
 
     @Test
     void isPendingNotification() {
-        Player player = new Player("Nombre", "Apodo", "Contraseña", "A11A1");
+        Player player = new Player("Nombre", "Apodo", "Contraseña", "RPG21");
 
         assertFalse(player.isPendingNotification());
 
@@ -292,7 +293,7 @@ class PlayerTest {
 
     @Test
     void setPendingNotification() {
-        Player player = new Player("Nombre", "Apodo", "Contraseña", "A11A1");
+        Player player = new Player("Nombre", "Apodo", "Contraseña", "RPG21");
 
         assertFalse(player.isPendingNotification());
 
@@ -303,7 +304,7 @@ class PlayerTest {
 
     @Test
     void isBanned() {
-        Player player = new Player("Nombre", "Apodo", "Contraseña", "A11A1");
+        Player player = new Player("Nombre", "Apodo", "Contraseña", "RPG21");
 
         assertFalse(player.isBanned());
 
@@ -314,7 +315,7 @@ class PlayerTest {
 
     @Test
     void setBanned() {
-        Player player = new Player("Nombre", "Apodo", "Contraseña", "A11A1");
+        Player player = new Player("Nombre", "Apodo", "Contraseña", "RPG21");
 
         assertFalse(player.isBanned());
 
@@ -325,7 +326,7 @@ class PlayerTest {
 
     @Test
     void getGold() {
-        Player player = new Player("Nombre", "Apodo", "Contraseña", "A11A1");
+        Player player = new Player("Nombre", "Apodo", "Contraseña", "RPG21");
 
         int gold = player.getGold();
 
@@ -334,7 +335,7 @@ class PlayerTest {
 
     @Test
     void setGold() {
-        Player player = new Player("Nombre", "Apodo", "Contraseña", "A11A1");
+        Player player = new Player("Nombre", "Apodo", "Contraseña", "RPG21");
 
         player.setGold(100);
 
@@ -345,7 +346,7 @@ class PlayerTest {
 
     @Test
     void getLastLostFight() {
-        Player player = new Player("Nombre", "Apodo", "Contraseña", "A11A1");
+        Player player = new Player("Nombre", "Apodo", "Contraseña", "RPG21");
 
         long lastLostFight = player.getLastLostFight();
 
@@ -354,14 +355,14 @@ class PlayerTest {
 
     @Test
     void setLastLostFight() {
-        Player player = new Player("Nombre", "Apodo", "Contraseña", "A11A1");
+        Player player = new Player("Nombre", "Apodo", "Contraseña", "RPG21");
 
         player.setLastLostFight(9999999L);
     }
 
     @Test
     void getCurrentCharacter() {
-        Player player = new Player("Nombre", "Apodo", "Contraseña", "A11A1");
+        Player player = new Player("Nombre", "Apodo", "Contraseña", "RPG21");
 
         CharacterSelection currentCharacter = player.getCurrentCharacter();
 
@@ -377,7 +378,7 @@ class PlayerTest {
 
     @Test
     void setCurrentCharacter() {
-        Player player = new Player("Nombre", "Apodo", "Contraseña", "A11A1");
+        Player player = new Player("Nombre", "Apodo", "Contraseña", "RPG21");
 
         CharacterSelection character = CharacterSelection.LYCANTHROPE;
 
@@ -389,7 +390,7 @@ class PlayerTest {
 
     @Test
     void getArmor() {
-        Player player = new Player("Nombre", "Apodo", "Contraseña", "A11A1");
+        Player player = new Player("Nombre", "Apodo", "Contraseña", "RPG21");
 
         Armor armor = player.getArmor();
 
@@ -398,7 +399,7 @@ class PlayerTest {
 
     @Test
     void setArmor() {
-        Player player = new Player("Nombre", "Apodo", "Contraseña", "A11A1");
+        Player player = new Player("Nombre", "Apodo", "Contraseña", "RPG21");
 
         Armor armor = new Armor("Armor", 100, 10);
 
@@ -410,7 +411,7 @@ class PlayerTest {
 
     @Test
     void getWeapons() {
-        Player player = new Player("Nombre", "Apodo", "Contraseña", "A11A1");
+        Player player = new Player("Nombre", "Apodo", "Contraseña", "RPG21");
 
         Weapon[] weapons = player.getWeapons();
 
@@ -428,7 +429,7 @@ class PlayerTest {
 
     @Test
     void setWeapons() {
-        Player player = new Player("Nombre", "Apodo", "Contraseña", "A11A1");
+        Player player = new Player("Nombre", "Apodo", "Contraseña", "RPG21");
 
         Weapon weapon = new Weapon("Weapon", 100, 10, 2);
 
@@ -441,7 +442,7 @@ class PlayerTest {
 
     @Test
     void getChallenges() {
-        Player player = new Player("Nombre", "Apodo", "Contraseña", "A11A1");
+        Player player = new Player("Nombre", "Apodo", "Contraseña", "RPG21");
 
         List<Challenge> challenges = player.getChallenges();
 
@@ -458,7 +459,7 @@ class PlayerTest {
 
     @Test
     void setChallenges() {
-        Player player = new Player("Nombre", "Apodo", "Contraseña", "A11A1");
+        Player player = new Player("Nombre", "Apodo", "Contraseña", "RPG21");
 
         Challenge challenge = new Challenge();
 
@@ -471,7 +472,7 @@ class PlayerTest {
 
     @Test
     void hasPendingChallenge() {
-        Player player = new Player("Nombre", "Apodo", "Contraseña", "A11A1");
+        Player player = new Player("Nombre", "Apodo", "Contraseña", "RPG21");
 
         assertFalse(player.hasPendingChallenge());
 
@@ -483,7 +484,7 @@ class PlayerTest {
 
     @Test
     void getModifiers() {
-        Player player = new Player("Nombre", "Apodo", "Contraseña", "A11A1");
+        Player player = new Player("Nombre", "Apodo", "Contraseña", "RPG21");
 
         Modifier[] modifiers = player.getModifiers();
 
@@ -494,7 +495,7 @@ class PlayerTest {
 
     @Test
     void setModifiers() {
-        Player player = new Player("Nombre", "Apodo", "Contraseña", "A11A1");
+        Player player = new Player("Nombre", "Apodo", "Contraseña", "RPG21");
 
         Modifier modifier = new Strength("Modifier", 10);
 
@@ -507,7 +508,7 @@ class PlayerTest {
 
     @Test
     void getSpecialAbility() {
-        Player player = new Player("Nombre", "Apodo", "Contraseña", "A11A1");
+        Player player = new Player("Nombre", "Apodo", "Contraseña", "RPG21");
 
         SpecialAbility specialAbility = player.getSpecialAbility();
 
@@ -516,7 +517,7 @@ class PlayerTest {
 
     @Test
     void setSpecialAbilities() {
-        Player player = new Player("Nombre", "Apodo", "Contraseña", "A11A1");
+        Player player = new Player("Nombre", "Apodo", "Contraseña", "RPG21");
 
         SpecialAbility specialAbility = new Talent("Habilidad Especial", 10, 10);
 

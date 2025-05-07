@@ -1,4 +1,4 @@
-package tests;
+package Utils;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
@@ -22,7 +22,6 @@ public class TestingUtils {
         System.out.flush();
     }
 
-    // Clean
     public static void resetInput() {
         System.setIn(System.in);
     }

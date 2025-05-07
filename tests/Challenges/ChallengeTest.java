@@ -5,7 +5,7 @@ import Abilities.Gift;
 import Abilities.Talent;
 import SystemGame.SystemGame;
 import Utils.Const;
-import tests.TestingUtils;
+import Utils.TestingUtils;
 import User.Player;
 import org.junit.jupiter.api.Test;
 

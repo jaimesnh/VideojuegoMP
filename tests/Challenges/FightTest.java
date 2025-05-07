@@ -16,6 +16,8 @@ import Character.Strength;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import Utils.TestingUtils;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -40,7 +42,7 @@ class FightTest {
         SystemGame.ghoulsAvailable = new ArrayList<>(List.of(new Ghoul("test", 1, 5), new Ghoul("test2", 2, 6)));
         SystemGame.devilsAvailable = new ArrayList<>(List.of(new Devil("test", 1, "test"), new Devil("test", 2, "test")));
 
-        tests.TestingUtils.setInput(" ");
+        TestingUtils.setInput(" ");
 
         Fight fight = new Fight(player1, player2);
 

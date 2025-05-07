@@ -9,7 +9,7 @@ class UserTest {
 
     @Test
     void getScore() {
-        Player user = new Player("Nombre", "Apodo", "Contraseña", "A11A1");
+        Player user = new Player("Arturo", "Turo", "aaaaaaaa", "RPG21");
 
         int score = user.getScore();
 
@@ -18,34 +18,34 @@ class UserTest {
 
     @Test
     void getName() {
-        String name = "Nombre";
+        String name = "Diana";
 
-        Player player = new Player(name, "Apodo", "Contraseña", "A11A1");
+        Player player = new Player(name, "Susan", "ssssssss", "RPG21");
 
         assertEquals(name, player.getName());
     }
 
     @Test
     void setName() {
-        Player user = new Player("Nombre", "Apodo", "Contraseña", "A11A1");
+        Player user = new Player("Jaime", "Jauma", "dddddddd", "RPG21");
 
-        user.setName("Pedro Sánchez");
+        user.setName("Pedro");
 
-        assertEquals("Pedro Sánchez", user.getName());
+        assertEquals("Pedro", user.getName());
     }
 
     @Test
     void getNick() {
-        Player player = new Player("Nombre", "Apodo", "Contraseña", "A11A1");
+        Player player = new Player("Ivan", "Pineaple", "fffffffff", "RPG21");
 
         String nick = player.getNick();
 
-        assertEquals("Apodo", nick);
+        assertEquals("Pineaple", nick);
     }
 
     @Test
     void setNick() {
-        Player player = new Player("Nombre", "Apodo", "Contraseña", "A11A1");
+        Player player = new Player("Arturo", "Turo", "aaaaaaaa", "RPG21");
 
         player.setNick("Pedrito");
 
@@ -54,16 +54,16 @@ class UserTest {
 
     @Test
     void getPassword() {
-        Player player = new Player("Nombre", "Apodo", "Contraseña", "A11A1");
+        Player player = new Player("Pedro", "Pedrito", "ContraseñaDePedrito", "RPG21");
 
         String password = player.getPassword();
 
-        assertEquals("Contraseña", password);
+        assertEquals("ContraseñaDePedrito", password);
     }
 
     @Test
     void setPassword() {
-        Player player = new Player("Nombre", "Apodo", "Contraseña", "A11A1");
+        Player player = new Player("Pedro", "Pedrito", "ContraseñaDePedrito", "RPG21");
 
         player.setPassword("ContraseñaDePedrito");
 

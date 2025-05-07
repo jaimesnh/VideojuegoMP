@@ -1,6 +1,7 @@
 package User;
 
 import Challenges.Challenge;
+import Utils.TestingUtils;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -40,7 +41,7 @@ class AdministratorTest {
                 {"Test4.1", "Test4.2", "Pablito", "Xx_GorgeElMejor_xX", "PablitoContra", "JorgitoXD", "ID-1", "ID-2", 50}
         };
 
-        tests.TestingUtils.setInput("1", "3", "1", "3", "1", "3", "1", "3");
+        TestingUtils.setInput("1", "3", "1", "3", "1", "3", "1", "3");
 
         for (Object[] testCase : testCases) {
             Player challenger = new Player((String) testCase[0], (String) testCase[2], (String) testCase[4], (String) testCase[6]);

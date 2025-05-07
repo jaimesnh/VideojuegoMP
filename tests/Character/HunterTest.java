@@ -5,6 +5,8 @@ import Minions.*;
 import SystemGame.SystemGame;
 import User.Player;
 import static org.junit.jupiter.api.Assertions.*;
+
+import Utils.TestingUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -70,7 +72,7 @@ class HunterTest {
 
     @Test
     void modifyAttributes() {
-        tests.TestingUtils.setInput(" ", "1", "-5", " ", "200", " ", "5");
+        TestingUtils.setInput(" ", "1", "-5", " ", "200", " ", "5");
 
         Hunter.modifyAttributes();
 
@@ -82,7 +84,7 @@ class HunterTest {
         int opt = 2;
         int value = 5;
 
-        tests.TestingUtils.setInput(String.valueOf(value));
+        TestingUtils.setInput(String.valueOf(value));
 
         // Call the method
         Hunter.alterAttr(opt);
@@ -93,7 +95,7 @@ class HunterTest {
 
     @Test
     void showAttributes() {
-        tests.TestingUtils.setInput(" ");
+        TestingUtils.setInput(" ");
 
         assertDoesNotThrow(Hunter::showAttributes);
     }
