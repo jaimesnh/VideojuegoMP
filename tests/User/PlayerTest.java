@@ -111,12 +111,6 @@ class PlayerTest {
         assertFalse(player.isBanned());
     }
 
-//    @Test
-//    void manageModifiers() {
-//        Player player = new Player("Nombre", "Apodo", "Contraseña", "RPG21");
-//
-//        assertDoesNotThrow(() -> player.manageModifiers());
-//    }
 
     @Test
     void changeModifier() {
